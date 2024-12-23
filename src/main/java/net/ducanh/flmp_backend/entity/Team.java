@@ -21,9 +21,6 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "logo")
-    private String logo;
-
     @Column(name = "name")
     private String name;
 
@@ -32,24 +29,6 @@ public class Team {
 
     @Column(name = "Trophies")
     private List<Integer> trophies;
-
-    @Column(name = "Stadium")
-    private String stadium;
-
-    @Column(name = "Stadium-total-seat")
-    private String StadiumTotalSeat;
-
-    @Column(name = "Stadium-location")
-    private String StadiumLocation;
-
-    @Column(name = "Stadium-Date-Open")
-    private String StadiumOpenDate;
-
-    @Column(name = "Stadium-Cost")
-    private String StadiumCost;
-
-    @Column(name = "Kit-Color")
-    private List<String> kitColors;
 
     @Column(name = "Chairman-name")
     private String chairmanName;
@@ -63,12 +42,9 @@ public class Team {
     @Column(name = "Favorite-state")
     private String favoriteState;
 
-    @Column(name = "Total-market-value")
-    private String totalMarketValue;
+    @Column(name = "ChairmanImage", length = 10000000)
+    private String chairmanImage;
 
-    @Column(name = "Detail-market-value")
-    private List<Double> detailMarketValue;
-
-    @Column(name = "Time-market-value")
-    private List<Double> timeMarketValue;
+    @Column(name = "KitsImage", length = 1000000000)
+    private List<String> kitsImage;
 }

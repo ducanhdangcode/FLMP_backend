@@ -36,22 +36,14 @@ public class TeamServiceImpl implements TeamService {
                 () -> new ResourceNotFoundException("Team is not existed with the given id: " + teamId)
         );
         team.setName(updatedTeam.getName());
-        team.setLogo(updatedTeam.getLogo());
         team.setColor(updatedTeam.getColor());
         team.setTrophies(updatedTeam.getTrophies());
-        team.setStadium(updatedTeam.getStadium());
-        team.setStadiumTotalSeat(updatedTeam.getStadiumTotalSeat());
-        team.setStadiumLocation(updatedTeam.getStadiumLocation());
-        team.setStadiumOpenDate(updatedTeam.getStadiumOpenDate());
-        team.setStadiumCost(updatedTeam.getStadiumCost());
-        team.setKitColors(updatedTeam.getKitColors());
         team.setChairmanName(updatedTeam.getChairmanName());
         team.setChairmanDescription(updatedTeam.getChairmanDescription());
         team.setVideoLinks(updatedTeam.getVideoLinks());
         team.setFavoriteState(updatedTeam.getFavoriteState());
-        team.setTotalMarketValue(updatedTeam.getTotalMarketValue());
-        team.setDetailMarketValue(updatedTeam.getDetailMarketValue());
-        team.setTimeMarketValue(updatedTeam.getTimeMarketValue());
+        team.setChairmanImage(updatedTeam.getChairmanImage());
+        team.setKitsImage(updatedTeam.getKitsImage());
 
         Team updatedTeamObj = teamRepository.save(team);
         return TeamMappers.mapToTeamDto(updatedTeamObj);
