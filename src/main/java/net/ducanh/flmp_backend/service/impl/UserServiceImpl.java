@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(updatedUser.getEmail());
         user.setAvatar(updatedUser.getAvatar());
         user.setFavoriteTeams(updatedUser.getFavoriteTeams());
+        user.setRoles(updatedUser.getRoles());
 
         User updatedUserObj = userRepository.save(user);
 

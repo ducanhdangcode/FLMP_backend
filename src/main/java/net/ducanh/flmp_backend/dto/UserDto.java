@@ -20,4 +20,5 @@ public class UserDto {
     private String lastname;
     private String avatar;
     private List<Integer> favoriteTeams;
+    private List<String> roles;
 }

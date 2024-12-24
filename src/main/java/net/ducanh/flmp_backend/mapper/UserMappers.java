@@ -13,7 +13,8 @@ public class UserMappers {
                 user.getFirstname(),
                 user.getLastname(),
                 user.getAvatar(),
-                user.getFavoriteTeams()
+                user.getFavoriteTeams(),
+                user.getRoles()
         );
     }
 
@@ -26,7 +27,8 @@ public class UserMappers {
                 userDto.getFirstname(),
                 userDto.getLastname(),
                 userDto.getAvatar(),
-                userDto.getFavoriteTeams()
+                userDto.getFavoriteTeams(),
+                userDto.getRoles()
         );
     }
 }

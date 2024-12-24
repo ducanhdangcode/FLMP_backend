@@ -42,4 +42,7 @@ public class User {
 
     @Column(name = "favorite-teams")
     private List<Integer> favoriteTeams;
+
+    @Column(name = "roles")
+    private List<String> roles;
 }
