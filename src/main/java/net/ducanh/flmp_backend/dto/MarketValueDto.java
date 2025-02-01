@@ -13,8 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 public class MarketValueDto {
     private Long id;
-    private int teamId;
-    private Long total;
-    private List<Long> positionBasedMarketValue;
-    private List<Long> timeBasedMarketValue;
+    private String total;
+    private String teamName;
+    private List<Double> positionBased;
+    private List<Double> timeBased;
 }

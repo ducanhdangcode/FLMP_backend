@@ -7,20 +7,20 @@ public class MarketValueMappers {
     public static MarketValueDto mapToMarketValueDto (MarketValue marketValue) {
         return new MarketValueDto (
                 marketValue.getId(),
-                marketValue.getTeamId(),
                 marketValue.getTotal(),
-                marketValue.getPositionBasedMarketValue(),
-                marketValue.getTimeBasedMarketValue()
+                marketValue.getTeamName(),
+                marketValue.getPositionBased(),
+                marketValue.getTimeBased()
         );
     }
 
     public static MarketValue mapToMarketValue (MarketValueDto marketValueDto) {
         return new MarketValue (
                 marketValueDto.getId(),
-                marketValueDto.getTeamId(),
                 marketValueDto.getTotal(),
-                marketValueDto.getPositionBasedMarketValue(),
-                marketValueDto.getTimeBasedMarketValue()
+                marketValueDto.getTeamName(),
+                marketValueDto.getPositionBased(),
+                marketValueDto.getTimeBased()
         );
     }
 }

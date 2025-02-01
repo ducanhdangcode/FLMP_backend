@@ -19,15 +19,15 @@ public class MarketValue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "teamId", nullable = false)
-    private int teamId;
-
     @Column(name = "total")
-    private Long total;
+    private String total;
+
+    @Column(name = "teamName")
+    private String teamName;
 
     @Column(name = "position_based")
-    private List<Long> positionBasedMarketValue;
+    private List<Double> positionBased;
 
     @Column(name = "time_based")
-    private List<Long> timeBasedMarketValue;
+    private List<Double> timeBased;
 }

@@ -42,10 +42,10 @@ public class MarketValueServiceImpl implements MarketValueService {
         MarketValue marketValue = marketValueRepository.findById(marketValueId).orElseThrow(
                 () -> new ResourceNotFoundException("Market value is not existed")
         );
-        marketValue.setTeamId(updatedMarketValue.getTeamId());
         marketValue.setTotal(updatedMarketValue.getTotal());
-        marketValue.setPositionBasedMarketValue(updatedMarketValue.getPositionBasedMarketValue());
-        marketValue.setTimeBasedMarketValue(updatedMarketValue.getTimeBasedMarketValue());
+        marketValue.setTeamName(updatedMarketValue.getTeamName());
+        marketValue.setPositionBased(updatedMarketValue.getPositionBased());
+        marketValue.setTimeBased(updatedMarketValue.getTimeBased());
 
         MarketValue updatedMarketValueObj = marketValueRepository.save(marketValue);
         return MarketValueMappers.mapToMarketValueDto(updatedMarketValueObj);

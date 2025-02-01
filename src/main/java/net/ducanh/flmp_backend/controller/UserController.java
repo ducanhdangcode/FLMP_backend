@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
         UserDto savedUser = userService.createUser(userDto);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
@@ -34,5 +34,29 @@ public class UserController {
     public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long userId, @RequestBody UserDto UpdatedUser) {
         UserDto userDto = userService.updateUser(userId, UpdatedUser);
         return ResponseEntity.ok(userDto);
+    }
+
+    static class RegisterResponse {
+        private String token;
+
+        public RegisterResponse (String token) {
+            this.token = token;
+        }
+
+        public String getToken () {
+            return this.token;
+        }
+    }
+
+    static class ErrorResponse {
+        private String message;
+
+        public ErrorResponse (String message) {
+            this.message = message;
+        }
+
+        public String getMessage () {
+            return this.message;
+        }
     }
 }
