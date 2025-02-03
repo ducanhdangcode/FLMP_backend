@@ -5,17 +5,21 @@ import net.ducanh.flmp_backend.dto.UserDto;
 import net.ducanh.flmp_backend.entity.User;
 import net.ducanh.flmp_backend.service.UserService;
 import org.hibernate.sql.Update;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+    @Autowired
     private UserService userService;
 
     @PostMapping
@@ -36,27 +40,10 @@ public class UserController {
         return ResponseEntity.ok(userDto);
     }
 
-    static class RegisterResponse {
-        private String token;
-
-        public RegisterResponse (String token) {
-            this.token = token;
-        }
-
-        public String getToken () {
-            return this.token;
-        }
-    }
-
-    static class ErrorResponse {
-        private String message;
-
-        public ErrorResponse (String message) {
-            this.message = message;
-        }
-
-        public String getMessage () {
-            return this.message;
-        }
+    @GetMapping("/{username}")
+    public ResponseEntity<User> findByUsername (@PathVariable String username) {
+        Optional<User> user = userService.getUserByUsername(username);
+        return user.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

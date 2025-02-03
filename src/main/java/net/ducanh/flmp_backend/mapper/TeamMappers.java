@@ -15,7 +15,8 @@ public class TeamMappers {
                 team.getVideoLinks(),
                 team.getFavoriteState(),
                 team.getChairmanImage(),
-                team.getKitsImage()
+                team.getKitsImage(),
+                team.getVideoTitles()
         );
     }
 
@@ -30,7 +31,8 @@ public class TeamMappers {
                 teamDto.getVideoLinks(),
                 teamDto.getFavoriteState(),
                 teamDto.getChairmanImage(),
-                teamDto.getKitsImage()
+                teamDto.getKitsImage(),
+                teamDto.getVideoTitles()
         );
     }
 

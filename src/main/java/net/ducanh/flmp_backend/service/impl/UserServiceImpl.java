@@ -10,6 +10,7 @@ import net.ducanh.flmp_backend.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,5 +48,10 @@ public class UserServiceImpl implements UserService {
         User updatedUserObj = userRepository.save(user);
 
         return UserMappers.mapToUserDto(updatedUserObj);
+    }
+
+    @Override
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

@@ -16,4 +16,5 @@ public class StadiumDto {
     private String location;
     private String openDate;
     private String constructionCost;
+    private String imageLink;
 }

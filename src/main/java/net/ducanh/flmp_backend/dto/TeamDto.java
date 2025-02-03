@@ -25,4 +25,5 @@ public class TeamDto {
     private String favoriteState;
     private String chairmanImage;
     private List<String> kitsImage;
+    private List<String> videoTitles;
 }

@@ -39,6 +39,7 @@ public class StadiumServiceImpl implements StadiumService {
         stadium.setLocation(stadiumDto.getLocation());
         stadium.setOpenDate(stadiumDto.getOpenDate());
         stadium.setConstructionCost(stadiumDto.getConstructionCost());
+        stadium.setImageLink(stadiumDto.getImageLink());
 
         Stadium updatedStadiumObj = stadiumRepository.save(stadium);
         return StadiumMappers.mapToStadiumDto(updatedStadiumObj);

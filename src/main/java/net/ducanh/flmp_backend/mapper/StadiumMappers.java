@@ -11,7 +11,8 @@ public class StadiumMappers {
                 stadium.getTotalSeat(),
                 stadium.getLocation(),
                 stadium.getOpenDate(),
-                stadium.getConstructionCost()
+                stadium.getConstructionCost(),
+                stadium.getImageLink()
         );
     }
 
@@ -22,7 +23,8 @@ public class StadiumMappers {
                 stadiumDto.getTotalSeat(),
                 stadiumDto.getLocation(),
                 stadiumDto.getOpenDate(),
-                stadiumDto.getConstructionCost()
+                stadiumDto.getConstructionCost(),
+                stadiumDto.getImageLink()
         );
     }
 }

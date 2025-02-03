@@ -44,6 +44,7 @@ public class TeamServiceImpl implements TeamService {
         team.setFavoriteState(updatedTeam.getFavoriteState());
         team.setChairmanImage(updatedTeam.getChairmanImage());
         team.setKitsImage(updatedTeam.getKitsImage());
+        team.setVideoTitles(updatedTeam.getVideoTitles());
 
         Team updatedTeamObj = teamRepository.save(team);
         return TeamMappers.mapToTeamDto(updatedTeamObj);

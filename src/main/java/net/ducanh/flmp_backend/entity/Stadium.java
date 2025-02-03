@@ -31,4 +31,7 @@ public class Stadium {
 
    @Column(name = "construction-cost")
    private String constructionCost;
+
+   @Column(name = "image-link", length = 2000000)
+   private String imageLink;
 }

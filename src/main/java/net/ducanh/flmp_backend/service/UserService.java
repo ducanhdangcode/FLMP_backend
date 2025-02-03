@@ -4,6 +4,7 @@ import net.ducanh.flmp_backend.dto.UserDto;
 import net.ducanh.flmp_backend.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     UserDto createUser(UserDto userDto);
@@ -11,4 +12,6 @@ public interface UserService {
     List<UserDto> getAllUsers();
 
     UserDto updateUser(Long userId, UserDto updatedUser);
+
+    Optional<User> getUserByUsername (String username);
 }

@@ -47,4 +47,7 @@ public class Team {
 
     @Column(name = "KitsImage", length = 1000000000)
     private List<String> kitsImage;
+
+    @Column(name = "VideoTitles", length = 10000)
+    private List<String> videoTitles;
 }
