@@ -54,4 +54,24 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public boolean updateUserAttribute(String username, String email, String firstname, String lastname) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (email != null && !email.isEmpty()) {
+                user.setEmail(email);
+            }
+            if (firstname != null && !firstname.isEmpty()) {
+                user.setFirstname(firstname);
+            }
+            if (lastname != null && !lastname.isEmpty()) {
+                user.setLastname(lastname);
+            }
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
 }

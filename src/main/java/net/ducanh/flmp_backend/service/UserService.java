@@ -14,4 +14,6 @@ public interface UserService {
     UserDto updateUser(Long userId, UserDto updatedUser);
 
     Optional<User> getUserByUsername (String username);
+
+    boolean updateUserAttribute(String username, String email, String firstname, String lastname);
 }

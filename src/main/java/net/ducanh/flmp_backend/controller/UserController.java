@@ -46,4 +46,19 @@ public class UserController {
         return user.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @PutMapping("/{username}/update")
+    public ResponseEntity<String> updateUserAttribute (
+            @PathVariable String username,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String firstname,
+            @RequestParam(required = false) String lastname
+    ) {
+        boolean isUpdated = userService.updateUserAttribute(username, email, firstname, lastname);
+        if (isUpdated) {
+            return ResponseEntity.ok("User details updated successfully");
+        } else {
+            return ResponseEntity.badRequest().body("User not found or no updates provided");
+        }
+    }
 }
