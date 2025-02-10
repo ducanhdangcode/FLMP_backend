@@ -2,6 +2,8 @@ package net.ducanh.flmp_backend.service.impl;
 
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.FormationDto;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerFormation;
+import net.ducanh.flmp_backend.entity.CustomEntity.UpdateSquadFormationRequest;
 import net.ducanh.flmp_backend.entity.Formation;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
 import net.ducanh.flmp_backend.mapper.FormationMappers;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,5 +61,17 @@ public class FormationServiceImpl implements FormationService {
     @Override
     public List<Formation> getFormationByTeamName(String teamName) {
         return formationRepository.findByTeamName(teamName);
+    }
+
+    @Override
+    public FormationDto updateFormationSquad(Long formationId, UpdateSquadFormationRequest request) {
+        Formation formation = formationRepository.findById(formationId).orElseThrow(
+                () -> new ResourceNotFoundException("Formation is not found!")
+        );
+        formation.setDetailSquad(request.getMainSquad());
+        formation.setSubstitutions(request.getSubstitutions());
+
+        Formation savedFormation = formationRepository.save(formation);
+        return FormationMappers.mapToFormationDto(savedFormation);
     }
 }

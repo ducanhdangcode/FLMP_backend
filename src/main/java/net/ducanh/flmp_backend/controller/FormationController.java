@@ -2,8 +2,12 @@ package net.ducanh.flmp_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.FormationDto;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerFormation;
+import net.ducanh.flmp_backend.entity.CustomEntity.UpdateSquadFormationRequest;
 import net.ducanh.flmp_backend.entity.Formation;
+import net.ducanh.flmp_backend.entity.Player;
 import net.ducanh.flmp_backend.service.FormationService;
+import org.hibernate.sql.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +49,12 @@ public class FormationController {
     public ResponseEntity<List<Formation>> getFormationByTeamName(@PathVariable String teamName) {
         List<Formation> formations = formationService.getFormationByTeamName(teamName);
         return ResponseEntity.ok(formations);
+    }
+
+    @PutMapping("/{id}/update-squad")
+    public ResponseEntity<FormationDto> updateFormationSquad (@PathVariable Long id,
+                                                              @RequestBody UpdateSquadFormationRequest request) {
+        FormationDto formationDto = formationService.updateFormationSquad(id, request);
+        return ResponseEntity.ok(formationDto);
     }
 }
