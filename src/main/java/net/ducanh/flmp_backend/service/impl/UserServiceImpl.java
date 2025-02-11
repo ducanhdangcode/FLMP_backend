@@ -1,7 +1,9 @@
 package net.ducanh.flmp_backend.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.UserDto;
+import net.ducanh.flmp_backend.entity.CustomEntity.PersonalFormation;
 import net.ducanh.flmp_backend.entity.User;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
 import net.ducanh.flmp_backend.mapper.UserMappers;
@@ -44,6 +46,7 @@ public class UserServiceImpl implements UserService {
         user.setAvatar(updatedUser.getAvatar());
         user.setFavoriteTeams(updatedUser.getFavoriteTeams());
         user.setRoles(updatedUser.getRoles());
+        user.setPersonalFormations(updatedUser.getPersonalFormations());
 
         User updatedUserObj = userRepository.save(user);
 
@@ -73,5 +76,17 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public UserDto updateUserPersonalFormations(Long userId, PersonalFormation personalFormation) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User is not existed with the given id: "
+                        + userId)
+        );
+        user.getPersonalFormations().add(personalFormation);
+        userRepository.save(user);
+
+        return UserMappers.mapToUserDto(user);
     }
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.ducanh.flmp_backend.entity.CustomEntity.PersonalFormation;
 
 import java.util.List;
 
@@ -21,4 +22,5 @@ public class UserDto {
     private String avatar;
     private List<Integer> favoriteTeams;
     private List<String> roles;
+    private List<PersonalFormation> personalFormations;
 }

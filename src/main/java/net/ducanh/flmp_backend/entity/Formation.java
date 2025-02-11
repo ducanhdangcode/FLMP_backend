@@ -26,8 +26,7 @@ public class Formation {
     @Column(name = "teamName")
     private String teamName;
 
-    @Column(name = "detailSquad")
-    @ElementCollection
+    @Column(name = "detailSquad", length = 10000000)
     private List<PlayerFormation> detailSquad;
 
     @Column(name = "coachFormation")
@@ -36,7 +35,6 @@ public class Formation {
     @Column(name = "formationDescription", length = 10000000)
     private String formationDescription;
 
-    @Column(name = "substitutions")
-    @ElementCollection
+    @Column(name = "substitutions", length = 1000000)
     private List<PlayerFormation> substitutions;
 }

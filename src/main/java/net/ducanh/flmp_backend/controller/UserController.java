@@ -2,6 +2,7 @@ package net.ducanh.flmp_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.UserDto;
+import net.ducanh.flmp_backend.entity.CustomEntity.PersonalFormation;
 import net.ducanh.flmp_backend.entity.User;
 import net.ducanh.flmp_backend.service.UserService;
 import org.hibernate.sql.Update;
@@ -60,5 +61,12 @@ public class UserController {
         } else {
             return ResponseEntity.badRequest().body("User not found or no updates provided");
         }
+    }
+
+    @PutMapping("/{id}/update-formations")
+    public ResponseEntity<UserDto> updateUserPersonalFormations(@PathVariable("id") Long userId,
+                                                                @RequestBody PersonalFormation personalFormation) {
+        UserDto userDto = userService.updateUserPersonalFormations(userId, personalFormation);
+        return ResponseEntity.ok(userDto);
     }
 }

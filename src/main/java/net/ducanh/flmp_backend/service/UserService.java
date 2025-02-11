@@ -1,6 +1,7 @@
 package net.ducanh.flmp_backend.service;
 
 import net.ducanh.flmp_backend.dto.UserDto;
+import net.ducanh.flmp_backend.entity.CustomEntity.PersonalFormation;
 import net.ducanh.flmp_backend.entity.User;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UserService {
     Optional<User> getUserByUsername (String username);
 
     boolean updateUserAttribute(String username, String email, String firstname, String lastname);
+
+    UserDto updateUserPersonalFormations (Long userId, PersonalFormation personalFormation);
 }

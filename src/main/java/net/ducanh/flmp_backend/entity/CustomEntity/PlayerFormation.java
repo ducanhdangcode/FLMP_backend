@@ -1,15 +1,24 @@
 package net.ducanh.flmp_backend.entity.CustomEntity;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Embeddable
+import java.io.Serializable;
+
+@Entity
+@Table(name = "player-formations")
 @NoArgsConstructor
 @Getter
 @Setter
-public class PlayerFormation {
+@AllArgsConstructor
+public class PlayerFormation implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private int number;
     private String name;
     private String position;

@@ -14,7 +14,8 @@ public class UserMappers {
                 user.getLastname(),
                 user.getAvatar(),
                 user.getFavoriteTeams(),
-                user.getRoles()
+                user.getRoles(),
+                user.getPersonalFormations()
         );
     }
 
@@ -28,7 +29,8 @@ public class UserMappers {
                 userDto.getLastname(),
                 userDto.getAvatar(),
                 userDto.getFavoriteTeams(),
-                userDto.getRoles()
+                userDto.getRoles(),
+                userDto.getPersonalFormations()
         );
     }
 }

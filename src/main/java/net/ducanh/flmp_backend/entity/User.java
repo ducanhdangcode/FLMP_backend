@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.ducanh.flmp_backend.entity.CustomEntity.PersonalFormation;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
@@ -45,4 +46,8 @@ public class User {
 
     @Column(name = "roles")
     private List<String> roles;
+
+    @Column(name = "personal-formation")
+    @ElementCollection
+    private List<PersonalFormation> personalFormations;
 }
