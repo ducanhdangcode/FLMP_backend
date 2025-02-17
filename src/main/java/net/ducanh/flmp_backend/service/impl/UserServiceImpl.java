@@ -89,4 +89,19 @@ public class UserServiceImpl implements UserService {
 
         return UserMappers.mapToUserDto(user);
     }
+
+    @Override
+    public UserDto updateUserSpecifiedFormation(Long userId, int formationIndex, PersonalFormation personalFormation) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User is not existed with the given id: "
+                        + userId)
+        );
+        List<PersonalFormation> personalFormations = user.getPersonalFormations();
+        if (formationIndex < 0 || formationIndex >= personalFormations.size()) {
+            throw new IllegalArgumentException("Invalid formation index: " + formationIndex);
+        }
+        personalFormations.set(formationIndex, personalFormation);
+        userRepository.save(user);
+        return UserMappers.mapToUserDto(user);
+    }
 }

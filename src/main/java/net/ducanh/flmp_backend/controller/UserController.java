@@ -69,4 +69,12 @@ public class UserController {
         UserDto userDto = userService.updateUserPersonalFormations(userId, personalFormation);
         return ResponseEntity.ok(userDto);
     }
+
+    @PutMapping("/{id}/update-specified-formation/{formationIndex}")
+    public ResponseEntity<UserDto> updateUserSpecifiedFormation(@PathVariable("id") Long userId,
+                                                                @PathVariable("formationIndex") int formationIndex,
+                                                                @RequestBody PersonalFormation personalFormation) {
+        UserDto userDto = userService.updateUserSpecifiedFormation(userId, formationIndex, personalFormation);
+        return ResponseEntity.ok(userDto);
+    }
 }

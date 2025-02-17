@@ -19,4 +19,6 @@ public interface UserService {
     boolean updateUserAttribute(String username, String email, String firstname, String lastname);
 
     UserDto updateUserPersonalFormations (Long userId, PersonalFormation personalFormation);
+
+    UserDto updateUserSpecifiedFormation (Long userId, int formationIndex, PersonalFormation personalFormation);
 }
