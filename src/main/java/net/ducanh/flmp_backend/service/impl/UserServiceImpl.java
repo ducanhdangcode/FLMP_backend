@@ -11,6 +11,7 @@ import net.ducanh.flmp_backend.repository.UserRepository;
 import net.ducanh.flmp_backend.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -101,6 +102,22 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("Invalid formation index: " + formationIndex);
         }
         personalFormations.set(formationIndex, personalFormation);
+        userRepository.save(user);
+        return UserMappers.mapToUserDto(user);
+    }
+
+    @Override
+    public UserDto deleteUserSpecifiedFormation(Long userId, int formationIndex) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User is not existed with the given id: "
+                        + userId)
+        );
+        List<PersonalFormation> personalFormations = user.getPersonalFormations();
+        if (formationIndex < 0 || formationIndex >= personalFormations.size()) {
+            throw new IllegalArgumentException("Invalid formation index: " + formationIndex);
+        }
+        personalFormations.remove(formationIndex);
+        user.setPersonalFormations(new ArrayList<>(personalFormations));
         userRepository.save(user);
         return UserMappers.mapToUserDto(user);
     }

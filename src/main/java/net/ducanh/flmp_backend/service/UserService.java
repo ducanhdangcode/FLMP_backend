@@ -21,4 +21,6 @@ public interface UserService {
     UserDto updateUserPersonalFormations (Long userId, PersonalFormation personalFormation);
 
     UserDto updateUserSpecifiedFormation (Long userId, int formationIndex, PersonalFormation personalFormation);
+
+    UserDto deleteUserSpecifiedFormation (Long userId, int formationIndex);
 }

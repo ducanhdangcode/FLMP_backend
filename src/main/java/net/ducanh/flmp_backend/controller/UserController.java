@@ -77,4 +77,11 @@ public class UserController {
         UserDto userDto = userService.updateUserSpecifiedFormation(userId, formationIndex, personalFormation);
         return ResponseEntity.ok(userDto);
     }
+
+    @DeleteMapping("/{id}/delete-specified-formation/{formationIndex}")
+    public ResponseEntity<UserDto> deleteUserSpecifiedFormation(@PathVariable("id") Long userId, @PathVariable(
+            "formationIndex") int formationIndex) {
+        UserDto userDto = userService.deleteUserSpecifiedFormation(userId, formationIndex);
+        return ResponseEntity.ok(userDto);
+    }
 }
