@@ -3,6 +3,7 @@ package net.ducanh.flmp_backend.service;
 import net.ducanh.flmp_backend.dto.UserDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.PersonalFormation;
 import net.ducanh.flmp_backend.entity.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 import java.util.Optional;
