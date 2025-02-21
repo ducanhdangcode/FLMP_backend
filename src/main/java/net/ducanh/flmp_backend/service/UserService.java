@@ -24,4 +24,6 @@ public interface UserService {
     UserDto updateUserSpecifiedFormation (Long userId, int formationIndex, PersonalFormation personalFormation);
 
     UserDto deleteUserSpecifiedFormation (Long userId, int formationIndex);
+
+    String deleteUserById (Long userId);
 }
