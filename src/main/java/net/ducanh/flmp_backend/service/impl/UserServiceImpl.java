@@ -131,5 +131,15 @@ public class UserServiceImpl implements UserService {
         return "Delete user successfully!";
     }
 
+    @Override
+    public UserDto updateUserAvatar(Long userId, String avatarLink) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User not found with the given id: " + userId)
+        );
+        user.setAvatar(avatarLink);
+        User savedUser = userRepository.save(user);
+        return UserMappers.mapToUserDto(savedUser);
+    }
+
 
 }

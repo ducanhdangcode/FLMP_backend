@@ -90,4 +90,10 @@ public class UserController {
         String deleteMessage = userService.deleteUserById(userId);
         return ResponseEntity.ok(deleteMessage);
     }
+
+    @PutMapping("/{id}/update-avatar")
+    public ResponseEntity<UserDto> updateUserAvatar (@PathVariable("id") Long userId, @RequestBody String avatarLink) {
+        UserDto userDto = userService.updateUserAvatar(userId, avatarLink);
+        return ResponseEntity.ok(userDto);
+    }
 }
