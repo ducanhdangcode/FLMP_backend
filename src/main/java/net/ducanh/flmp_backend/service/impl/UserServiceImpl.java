@@ -141,5 +141,27 @@ public class UserServiceImpl implements UserService {
         return UserMappers.mapToUserDto(savedUser);
     }
 
+    @Override
+    public UserDto addFavoriteTeam (Long userId, int favoriteTeamId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User not found with the given id: " + userId)
+        );
+        List<Integer> favoriteTeams = user.getFavoriteTeams();
+        favoriteTeams.add(favoriteTeamId);
+        user.setFavoriteTeams(new ArrayList<>(favoriteTeams));
+        User savedUser = userRepository.save(user);
+        return UserMappers.mapToUserDto(savedUser);
+    }
 
+    @Override
+    public UserDto removeFavoriteTeam(Long userId, int favoriteTeamId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User not found with the given id: " + userId)
+        );
+        List<Integer> favoriteTeams = user.getFavoriteTeams();
+        favoriteTeams.removeIf(id -> id == favoriteTeamId);
+        user.setFavoriteTeams(new ArrayList<>(favoriteTeams));
+        User savedUser = userRepository.save(user);
+        return UserMappers.mapToUserDto(savedUser);
+    }
 }

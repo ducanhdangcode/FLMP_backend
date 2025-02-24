@@ -57,4 +57,14 @@ public class TeamServiceImpl implements TeamService {
         );
         return TeamMappers.mapToTeamDto(team);
     }
+
+    @Override
+    public TeamDto updateFavoriteState(Long teamId, String favoriteState) {
+        Team team = teamRepository.findById(teamId).orElseThrow(
+                () -> new ResourceNotFoundException("Team is not existed with the given id: " + teamId)
+        );
+        team.setFavoriteState(favoriteState);
+        Team savedTeam = teamRepository.save(team);
+        return TeamMappers.mapToTeamDto(savedTeam);
+    }
 }

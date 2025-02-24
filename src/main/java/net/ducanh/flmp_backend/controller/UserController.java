@@ -96,4 +96,18 @@ public class UserController {
         UserDto userDto = userService.updateUserAvatar(userId, avatarLink);
         return ResponseEntity.ok(userDto);
     }
+
+    @PutMapping("/{id}/add-favorite-team/{favorite-team-id}")
+    public ResponseEntity<UserDto> addFavoriteTeam (@PathVariable("id") Long userId,
+                                                    @PathVariable("favorite-team-id") int favoriteTeamId) {
+        UserDto userDto = userService.addFavoriteTeam(userId, favoriteTeamId);
+        return ResponseEntity.ok(userDto);
+    }
+
+    @PutMapping("/{id}/remove-favorite-team/{favorite-team-id}")
+    public ResponseEntity<UserDto> removeFavoriteTeam (@PathVariable("id") Long userId, @PathVariable("favorite-team" +
+            "-id") int favoriteTeamId) {
+        UserDto userDto = userService.removeFavoriteTeam(userId, favoriteTeamId);
+        return ResponseEntity.ok(userDto);
+    }
 }

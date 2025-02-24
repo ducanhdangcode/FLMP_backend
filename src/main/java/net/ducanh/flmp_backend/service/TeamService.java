@@ -12,4 +12,6 @@ public interface TeamService {
     TeamDto updateTeam(Long teamId, TeamDto updatedTeam);
 
     TeamDto getTeamById (Long employeeId);
+
+    TeamDto updateFavoriteState (Long teamId, String favoriteState);
 }

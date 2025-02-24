@@ -41,4 +41,11 @@ public class TeamController {
         TeamDto teamDto = teamService.updateTeam(teamId, UpdatedTeam);
         return ResponseEntity.ok(teamDto);
     }
+
+    @PutMapping("/{id}/update-favorite-state")
+    public ResponseEntity<TeamDto> updateFavoriteState(@PathVariable("id") Long teamId,
+                                                       @RequestBody String favoriteState) {
+        TeamDto teamDto = teamService.updateFavoriteState(teamId, favoriteState);
+        return ResponseEntity.ok(teamDto);
+    }
 }

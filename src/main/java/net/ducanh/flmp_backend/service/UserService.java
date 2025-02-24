@@ -28,4 +28,8 @@ public interface UserService {
     String deleteUserById (Long userId);
 
     UserDto updateUserAvatar (Long userId, String avatarLink);
+
+    UserDto addFavoriteTeam (Long userId, int favoriteTeamId);
+
+    UserDto removeFavoriteTeam (Long userId, int favoriteTeamId);
 }
