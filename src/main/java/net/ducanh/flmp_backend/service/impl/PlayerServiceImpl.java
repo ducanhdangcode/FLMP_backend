@@ -64,4 +64,12 @@ public class PlayerServiceImpl implements PlayerService {
         );
         return PlayerMappers.mapToPlayerDto(player);
     }
+
+    @Override
+    public PlayerDto getPlayerByName(String playerName) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        return PlayerMappers.mapToPlayerDto(player);
+    }
 }

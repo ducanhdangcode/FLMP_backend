@@ -40,4 +40,9 @@ public class PlayerController {
         return ResponseEntity.ok(playerDto);
     }
 
+    @GetMapping("/name/{player-name}")
+    public ResponseEntity<PlayerDto> getPlayerByName (@PathVariable("player-name") String playerName) {
+        PlayerDto playerDto = playerService.getPlayerByName(playerName);
+        return ResponseEntity.ok(playerDto);
+    }
 }
