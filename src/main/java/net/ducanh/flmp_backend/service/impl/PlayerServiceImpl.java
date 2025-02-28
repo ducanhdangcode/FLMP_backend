@@ -124,4 +124,15 @@ public class PlayerServiceImpl implements PlayerService {
         Player savedPlayer = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(savedPlayer);
     }
+
+    @Override
+    public PlayerContract getPlayerContractByTeamName(String playerName, String teamName) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<PlayerContract> contracts = player.getContracts();
+        return contracts.stream().filter(contract -> contract.getTeamName().equals(teamName)).findFirst().orElseThrow(
+                () -> new ResourceNotFoundException("Contract is not found with the given team name: " + teamName)
+        );
+    }
 }

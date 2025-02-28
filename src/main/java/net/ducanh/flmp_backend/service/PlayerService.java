@@ -19,4 +19,6 @@ public interface PlayerService {
     PlayerDto updatePlayerByName (String playerName, PlayerDto updatedPlayer);
 
     PlayerDto addPlayerContract (String playerName, PlayerContract contract);
+
+    PlayerContract getPlayerContractByTeamName (String playerName, String teamName);
 }

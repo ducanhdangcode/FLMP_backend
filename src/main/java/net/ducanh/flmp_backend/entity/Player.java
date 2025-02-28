@@ -90,5 +90,6 @@ public class Player {
     private String preferredFoot;
 
     @Column(name = "contracts")
+    @ElementCollection
     private List<PlayerContract> contracts;
 }

@@ -60,4 +60,11 @@ public class PlayerController {
         PlayerDto playerDto = playerService.addPlayerContract(playerName, contract);
         return ResponseEntity.ok(playerDto);
     }
+
+    @GetMapping("/name/{player-name}/find-contract/{teamName}")
+    public ResponseEntity<PlayerContract> getPlayerContractByTeamName (@PathVariable("player-name") String playerName
+            , @PathVariable("teamName") String teamName) {
+        PlayerContract contract = playerService.getPlayerContractByTeamName(playerName, teamName);
+        return ResponseEntity.ok(contract);
+    }
 }
