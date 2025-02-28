@@ -9,14 +9,16 @@ public class PlayerMappers {
                 player.getId(),
                 player.getName(),
                 player.getNationality(),
+                player.getBirthPlace(),
                 player.getHeight(),
-                player.getWeight(),
                 player.getBirthDate(),
                 player.getMarketValue(),
                 player.getTeam(),
                 player.getTeamId(),
                 player.getShirtNumber(),
                 player.getPosition(),
+                player.getDetailPosition(),
+                player.getOtherPosition(),
                 player.getGoalQuantity(),
                 player.getImageLink(),
                 player.getAppearances(),
@@ -25,7 +27,10 @@ public class PlayerMappers {
                 player.getSaves(),
                 player.getAssist(),
                 player.getMinutePlayed(),
-                player.getNationalityImageLink()
+                player.getNationalityImageLink(),
+                player.getFormerInternational(),
+                player.getPreferredFoot(),
+                player.getContracts()
         );
     }
 
@@ -34,14 +39,16 @@ public class PlayerMappers {
                 playerDto.getId(),
                 playerDto.getName(),
                 playerDto.getNationality(),
+                playerDto.getBirthPlace(),
                 playerDto.getHeight(),
-                playerDto.getWeight(),
                 playerDto.getBirthDate(),
                 playerDto.getMarketValue(),
                 playerDto.getTeam(),
                 playerDto.getTeamId(),
                 playerDto.getShirtNumber(),
                 playerDto.getPosition(),
+                playerDto.getDetailPosition(),
+                playerDto.getOtherPosition(),
                 playerDto.getGoalQuantity(),
                 playerDto.getImageLink(),
                 playerDto.getAppearances(),
@@ -50,7 +57,10 @@ public class PlayerMappers {
                 playerDto.getSaves(),
                 playerDto.getAssist(),
                 playerDto.getMinutePlayed(),
-                playerDto.getNationalityImageLink()
+                playerDto.getNationalityImageLink(),
+                playerDto.getFormerInternational(),
+                playerDto.getPreferredFoot(),
+                playerDto.getContracts()
         );
     }
 }

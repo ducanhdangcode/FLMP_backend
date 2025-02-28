@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,11 +26,11 @@ public class Player {
     @Column(name = "nationality", nullable = false)
     private String nationality;
 
+    @Column(name = "birth-place", nullable = false)
+    private String birthPlace;
+
     @Column(name = "height", nullable = false)
     private Long height;
-
-    @Column(name = "weight", nullable = false)
-    private Long weight;
 
     @Column(name = "birthDate", nullable = false)
     private String birthDate;
@@ -46,6 +49,12 @@ public class Player {
 
     @Column(name = "position", nullable = false)
     private String position;
+
+    @Column(name = "detail-position", nullable = false)
+    private String detailPosition;
+
+    @Column(name = "other-position", nullable = false)
+    private String otherPosition;
 
     @Column(name = "goal_quantity", nullable = false)
     private String goalQuantity;
@@ -73,4 +82,13 @@ public class Player {
 
     @Column(name = "nationality-image-link", length = 100000)
     private String nationalityImageLink;
+
+    @Column(name = "former-international")
+    private String formerInternational;
+
+    @Column(name = "preferred-foot")
+    private String preferredFoot;
+
+    @Column(name = "contracts")
+    private List<PlayerContract> contracts;
 }

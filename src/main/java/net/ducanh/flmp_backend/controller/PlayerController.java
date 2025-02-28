@@ -2,6 +2,7 @@ package net.ducanh.flmp_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
 import net.ducanh.flmp_backend.service.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,20 @@ public class PlayerController {
     @GetMapping("/name/{player-name}")
     public ResponseEntity<PlayerDto> getPlayerByName (@PathVariable("player-name") String playerName) {
         PlayerDto playerDto = playerService.getPlayerByName(playerName);
+        return ResponseEntity.ok(playerDto);
+    }
+
+    @PutMapping("/name/{player-name}")
+    public ResponseEntity<PlayerDto> updatePlayerByName (@PathVariable("player-name") String playerName,
+                                                         @RequestBody PlayerDto updatedPlayer) {
+        PlayerDto playerDto = playerService.updatePlayerByName(playerName, updatedPlayer);
+        return ResponseEntity.ok(playerDto);
+    }
+
+    @PutMapping("/name/{player-name}/add-contract")
+    public ResponseEntity<PlayerDto> addPlayerContract (@PathVariable("player-name") String playerName,
+                                                  @RequestBody PlayerContract contract) {
+        PlayerDto playerDto = playerService.addPlayerContract(playerName, contract);
         return ResponseEntity.ok(playerDto);
     }
 }
