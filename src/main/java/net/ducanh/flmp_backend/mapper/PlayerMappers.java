@@ -30,7 +30,8 @@ public class PlayerMappers {
                 player.getNationalityImageLink(),
                 player.getFormerInternational(),
                 player.getPreferredFoot(),
-                player.getContracts()
+                player.getContracts(),
+                player.getStats()
         );
     }
 
@@ -60,7 +61,8 @@ public class PlayerMappers {
                 playerDto.getNationalityImageLink(),
                 playerDto.getFormerInternational(),
                 playerDto.getPreferredFoot(),
-                playerDto.getContracts()
+                playerDto.getContracts(),
+                playerDto.getStats()
         );
     }
 }

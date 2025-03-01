@@ -3,6 +3,7 @@ package net.ducanh.flmp_backend.service.impl;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
 import net.ducanh.flmp_backend.entity.Player;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
 import net.ducanh.flmp_backend.mapper.PlayerMappers;
@@ -59,6 +60,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setFormerInternational(updatedPlayer.getFormerInternational());
         player.setPreferredFoot(updatedPlayer.getPreferredFoot());
         player.setContracts(updatedPlayer.getContracts());
+        player.setStats(updatedPlayer.getStats());
 
         Player updatedPlayerObj = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(updatedPlayerObj);
@@ -108,6 +110,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setFormerInternational(updatedPlayer.getFormerInternational());
         player.setPreferredFoot(updatedPlayer.getPreferredFoot());
         player.setContracts(updatedPlayer.getContracts());
+        player.setStats(updatedPlayer.getStats());
 
         Player updatedPlayerObj = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(updatedPlayerObj);
@@ -133,6 +136,51 @@ public class PlayerServiceImpl implements PlayerService {
         List<PlayerContract> contracts = player.getContracts();
         return contracts.stream().filter(contract -> contract.getTeamName().equals(teamName)).findFirst().orElseThrow(
                 () -> new ResourceNotFoundException("Contract is not found with the given team name: " + teamName)
+        );
+    }
+
+    @Override
+    public PlayerDto addPlayerStat (String playerName, PlayerStats stat) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<PlayerStats> stats = player.getStats();
+        stats.add(stat);
+        player.setStats(new ArrayList<>(stats));
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
+    }
+
+    @Override
+    public PlayerStats getStatBySeason(String playerName, String seasonName) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<PlayerStats> stats = player.getStats();
+        return stats.stream().filter(stat -> stat.getSeason().equals(seasonName)).findFirst().orElseThrow(
+                () -> new ResourceNotFoundException("Stat is not existed with the given season name: " + seasonName)
+        );
+    }
+
+    @Override
+    public PlayerStats getStatByLeague(String playerName, String leagueName) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<PlayerStats> stats = player.getStats();
+        return stats.stream().filter(stat -> stat.getLeagueName().equals(leagueName)).findFirst().orElseThrow(
+                () -> new ResourceNotFoundException("Stat is not existed with the given league name: " + leagueName)
+        );
+    }
+
+    @Override
+    public PlayerStats getStatByTeam(String playerName, String teamName) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<PlayerStats> stats = player.getStats();
+        return stats.stream().filter(stat -> stat.getTeamName().equals(teamName)).findFirst().orElseThrow(
+                () -> new ResourceNotFoundException("Stat is not existed with the given team name: " + teamName)
         );
     }
 }

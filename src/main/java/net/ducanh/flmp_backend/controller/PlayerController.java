@@ -3,6 +3,7 @@ package net.ducanh.flmp_backend.controller;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
 import net.ducanh.flmp_backend.service.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,5 +67,33 @@ public class PlayerController {
             , @PathVariable("teamName") String teamName) {
         PlayerContract contract = playerService.getPlayerContractByTeamName(playerName, teamName);
         return ResponseEntity.ok(contract);
+    }
+
+    @PutMapping("/name/{player-name}/add-stat")
+    public ResponseEntity<PlayerDto> addPlayerStat (@PathVariable("player-name") String playerName,
+                                                    @RequestBody PlayerStats stat) {
+        PlayerDto  playerDto = playerService.addPlayerStat(playerName, stat);
+        return ResponseEntity.ok(playerDto);
+    }
+
+    @GetMapping("/name/{player-name}/get-stat/{season-name}")
+    public ResponseEntity<PlayerStats> getStatBySeason (@PathVariable("player-name") String playerName,
+                                                        @PathVariable("season-name") String seasonName) {
+        PlayerStats stat = playerService.getStatBySeason(playerName, seasonName);
+        return ResponseEntity.ok(stat);
+    }
+
+    @GetMapping("/name/{player-name}/get-stat/{league-name}")
+    public ResponseEntity<PlayerStats> getStatByLeague (@PathVariable("player-name") String playerName,
+                                                        @PathVariable("league-name") String leagueName) {
+        PlayerStats stat = playerService.getStatByLeague(playerName, leagueName);
+        return ResponseEntity.ok(stat);
+    }
+
+    @GetMapping("/name/{player-name}/get-stat/{team-name}")
+    public ResponseEntity<PlayerStats> getStatByTeam (@PathVariable("player-name") String playerName, @PathVariable(
+            "team-name") String teamName) {
+        PlayerStats stat = playerService.getStatByTeam(playerName, teamName);
+        return ResponseEntity.ok(stat);
     }
 }

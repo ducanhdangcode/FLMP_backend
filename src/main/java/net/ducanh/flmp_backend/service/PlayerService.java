@@ -2,6 +2,7 @@ package net.ducanh.flmp_backend.service;
 
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
 
 import java.util.List;
 
@@ -21,4 +22,12 @@ public interface PlayerService {
     PlayerDto addPlayerContract (String playerName, PlayerContract contract);
 
     PlayerContract getPlayerContractByTeamName (String playerName, String teamName);
+
+    PlayerDto addPlayerStat (String playerName, PlayerStats stat);
+
+    PlayerStats getStatBySeason (String playerName, String seasonName);
+
+    PlayerStats getStatByLeague (String playerName, String leagueName);
+
+    PlayerStats getStatByTeam (String playerName, String teamName);
 }

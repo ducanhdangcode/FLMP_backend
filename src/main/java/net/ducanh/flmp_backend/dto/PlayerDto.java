@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
 
 import java.util.List;
 
@@ -38,4 +39,5 @@ public class PlayerDto {
     private String formerInternational;
     private String preferredFoot;
     private List<PlayerContract> contracts;
+    private List<PlayerStats> stats;
 }
