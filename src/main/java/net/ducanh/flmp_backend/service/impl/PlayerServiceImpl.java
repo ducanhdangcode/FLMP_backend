@@ -152,14 +152,15 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public PlayerStats getStatBySeason(String playerName, String seasonName) {
+    public List<PlayerStats> getStatBySeason(String playerName, String seasonName) {
         Player player = playerRepository.findByName(playerName).orElseThrow(
                 () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
         );
-        List<PlayerStats> stats = player.getStats();
-        return stats.stream().filter(stat -> stat.getSeason().equals(seasonName)).findFirst().orElseThrow(
-                () -> new ResourceNotFoundException("Stat is not existed with the given season name: " + seasonName)
-        );
+        List<PlayerStats> stats = player.getStats().stream().filter(stat -> stat.getSeason().equals(seasonName)).collect(Collectors.toList());
+        if (stats.isEmpty()) {
+            throw new ResourceNotFoundException("Stats is not existed with the given season name: " + seasonName);
+        }
+        return stats;
     }
 
     @Override

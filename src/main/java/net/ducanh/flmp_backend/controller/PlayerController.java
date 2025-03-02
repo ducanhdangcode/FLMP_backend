@@ -76,21 +76,21 @@ public class PlayerController {
         return ResponseEntity.ok(playerDto);
     }
 
-    @GetMapping("/name/{player-name}/get-stat/{season-name}")
-    public ResponseEntity<PlayerStats> getStatBySeason (@PathVariable("player-name") String playerName,
+    @GetMapping("/name/{player-name}/get-stat-by-season/{season-name}")
+    public ResponseEntity<List<PlayerStats>> getStatBySeason (@PathVariable("player-name") String playerName,
                                                         @PathVariable("season-name") String seasonName) {
-        PlayerStats stat = playerService.getStatBySeason(playerName, seasonName);
-        return ResponseEntity.ok(stat);
+        List<PlayerStats> stats = playerService.getStatBySeason(playerName, seasonName);
+        return ResponseEntity.ok(stats);
     }
 
-    @GetMapping("/name/{player-name}/get-stat/{league-name}")
+    @GetMapping("/name/{player-name}/get-stat-by-league/{league-name}")
     public ResponseEntity<PlayerStats> getStatByLeague (@PathVariable("player-name") String playerName,
                                                         @PathVariable("league-name") String leagueName) {
         PlayerStats stat = playerService.getStatByLeague(playerName, leagueName);
         return ResponseEntity.ok(stat);
     }
 
-    @GetMapping("/name/{player-name}/get-stat/{team-name}")
+    @GetMapping("/name/{player-name}/get-stat-by-team/{team-name}")
     public ResponseEntity<PlayerStats> getStatByTeam (@PathVariable("player-name") String playerName, @PathVariable(
             "team-name") String teamName) {
         PlayerStats stat = playerService.getStatByTeam(playerName, teamName);

@@ -25,7 +25,7 @@ public interface PlayerService {
 
     PlayerDto addPlayerStat (String playerName, PlayerStats stat);
 
-    PlayerStats getStatBySeason (String playerName, String seasonName);
+    List<PlayerStats> getStatBySeason (String playerName, String seasonName);
 
     PlayerStats getStatByLeague (String playerName, String leagueName);
 
