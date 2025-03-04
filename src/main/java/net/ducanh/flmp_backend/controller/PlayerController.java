@@ -91,9 +91,15 @@ public class PlayerController {
     }
 
     @GetMapping("/name/{player-name}/get-stat-by-team/{team-name}")
-    public ResponseEntity<PlayerStats> getStatByTeam (@PathVariable("player-name") String playerName, @PathVariable(
+    public ResponseEntity<List<PlayerStats>> getStatByTeam (@PathVariable("player-name") String playerName, @PathVariable(
             "team-name") String teamName) {
-        PlayerStats stat = playerService.getStatByTeam(playerName, teamName);
-        return ResponseEntity.ok(stat);
+        List<PlayerStats> stats = playerService.getStatByTeam(playerName, teamName);
+        return ResponseEntity.ok(stats);
+    }
+
+    @GetMapping("/name/{player-name}/get-all-stats")
+    public ResponseEntity<List<PlayerStats>> getAllPlayerStats (@PathVariable("player-name") String playerName) {
+        List<PlayerStats> stats = playerService.getAllPlayerStats(playerName);
+        return ResponseEntity.ok(stats);
     }
 }

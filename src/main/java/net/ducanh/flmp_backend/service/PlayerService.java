@@ -29,5 +29,7 @@ public interface PlayerService {
 
     PlayerStats getStatByLeague (String playerName, String leagueName);
 
-    PlayerStats getStatByTeam (String playerName, String teamName);
+    List<PlayerStats> getStatByTeam (String playerName, String teamName);
+
+    List<PlayerStats> getAllPlayerStats (String playerName);
 }
