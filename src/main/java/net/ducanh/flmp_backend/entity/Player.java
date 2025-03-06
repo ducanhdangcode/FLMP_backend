@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerDetailRating;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
 
 import java.util.List;
@@ -97,4 +98,8 @@ public class Player {
     @Column(name = "statistics")
     @ElementCollection
     private List<PlayerStats> stats;
+
+    @Column(name = "rating")
+    @ElementCollection
+    private List<PlayerDetailRating> playerRatings;
 }

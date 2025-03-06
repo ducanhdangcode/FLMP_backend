@@ -31,7 +31,8 @@ public class PlayerMappers {
                 player.getFormerInternational(),
                 player.getPreferredFoot(),
                 player.getContracts(),
-                player.getStats()
+                player.getStats(),
+                player.getPlayerRatings()
         );
     }
 
@@ -62,7 +63,8 @@ public class PlayerMappers {
                 playerDto.getFormerInternational(),
                 playerDto.getPreferredFoot(),
                 playerDto.getContracts(),
-                playerDto.getStats()
+                playerDto.getStats(),
+                playerDto.getPlayerRatings()
         );
     }
 }

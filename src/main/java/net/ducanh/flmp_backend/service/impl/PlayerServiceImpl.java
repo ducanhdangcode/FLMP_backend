@@ -3,6 +3,7 @@ package net.ducanh.flmp_backend.service.impl;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerDetailRating;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
 import net.ducanh.flmp_backend.entity.Player;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
@@ -61,6 +62,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setPreferredFoot(updatedPlayer.getPreferredFoot());
         player.setContracts(updatedPlayer.getContracts());
         player.setStats(updatedPlayer.getStats());
+        player.setPlayerRatings(updatedPlayer.getPlayerRatings());
 
         Player updatedPlayerObj = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(updatedPlayerObj);
@@ -111,6 +113,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setPreferredFoot(updatedPlayer.getPreferredFoot());
         player.setContracts(updatedPlayer.getContracts());
         player.setStats(updatedPlayer.getStats());
+        player.setPlayerRatings(updatedPlayer.getPlayerRatings());
 
         Player updatedPlayerObj = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(updatedPlayerObj);
@@ -193,5 +196,27 @@ public class PlayerServiceImpl implements PlayerService {
                 () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
         );
         return player.getStats();
+    }
+
+    @Override
+    public PlayerDto addPlayerRating(String playerName, PlayerDetailRating playerRating) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<PlayerDetailRating> ratings = player.getPlayerRatings();
+        ratings.add(playerRating);
+        player.setPlayerRatings(new ArrayList<>(ratings));
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
+    }
+
+    @Override
+    public PlayerDto updatePlayerRatings(String playerName, List<PlayerDetailRating> playerRatings) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        player.setPlayerRatings(playerRatings);
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
     }
 }
