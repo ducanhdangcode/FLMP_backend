@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerDetailRating;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerPriorityPosition;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
 import net.ducanh.flmp_backend.entity.Player;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
@@ -63,6 +64,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setContracts(updatedPlayer.getContracts());
         player.setStats(updatedPlayer.getStats());
         player.setPlayerRatings(updatedPlayer.getPlayerRatings());
+        player.setPriorityPositions(updatedPlayer.getPriorityPositions());
 
         Player updatedPlayerObj = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(updatedPlayerObj);
@@ -114,6 +116,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setContracts(updatedPlayer.getContracts());
         player.setStats(updatedPlayer.getStats());
         player.setPlayerRatings(updatedPlayer.getPlayerRatings());
+        player.setPriorityPositions(updatedPlayer.getPriorityPositions());
 
         Player updatedPlayerObj = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(updatedPlayerObj);
@@ -216,6 +219,16 @@ public class PlayerServiceImpl implements PlayerService {
                 () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
         );
         player.setPlayerRatings(playerRatings);
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
+    }
+
+    @Override
+    public PlayerDto updatePlayerPriorityPositions(String playerName, List<PlayerPriorityPosition> priorityPositions) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        player.setPriorityPositions(priorityPositions);
         Player savedPlayer = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(savedPlayer);
     }

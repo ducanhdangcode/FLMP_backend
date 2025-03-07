@@ -3,6 +3,7 @@ package net.ducanh.flmp_backend.service;
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerDetailRating;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerPriorityPosition;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
 
 import java.util.List;
@@ -37,4 +38,6 @@ public interface PlayerService {
     PlayerDto addPlayerRating (String playerName, PlayerDetailRating playerRating);
 
     PlayerDto updatePlayerRatings (String playerName, List<PlayerDetailRating> playerRatings);
+
+    PlayerDto updatePlayerPriorityPositions (String playerName, List<PlayerPriorityPosition> priorityPositions);
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerDetailRating;
+import net.ducanh.flmp_backend.entity.CustomEntity.PlayerPriorityPosition;
 import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
 import net.ducanh.flmp_backend.service.PlayerService;
 import org.springframework.http.HttpStatus;
@@ -115,6 +116,13 @@ public class PlayerController {
     public ResponseEntity<PlayerDto> updatePlayerRatings (@PathVariable("player-name") String playerName,
                                                           @RequestBody List<PlayerDetailRating> playerRatings) {
         PlayerDto playerDto = playerService.updatePlayerRatings(playerName, playerRatings);
+        return ResponseEntity.ok(playerDto);
+    }
+
+    @PutMapping("/name/{player-name}/update-priority-positions")
+    public ResponseEntity<PlayerDto> updatePlayerPriorityPositions (@PathVariable("player-name") String playerName,
+                                                                    @RequestBody List<PlayerPriorityPosition> priorityPositions) {
+        PlayerDto playerDto = playerService.updatePlayerPriorityPositions(playerName, priorityPositions);
         return ResponseEntity.ok(playerDto);
     }
 }
