@@ -32,4 +32,6 @@ public interface UserService {
     UserDto addFavoriteTeam (Long userId, int favoriteTeamId);
 
     UserDto removeFavoriteTeam (Long userId, int favoriteTeamId);
+
+    UserDto updateUserByUsername (String username, UserDto updatedUser);
 }

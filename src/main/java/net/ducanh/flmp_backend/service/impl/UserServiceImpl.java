@@ -164,4 +164,23 @@ public class UserServiceImpl implements UserService {
         User savedUser = userRepository.save(user);
         return UserMappers.mapToUserDto(savedUser);
     }
+
+    @Override
+    public UserDto updateUserByUsername(String username, UserDto updatedUser) {
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new ResourceNotFoundException("User not found with the given username: " + username)
+        );
+        user.setUsername(updatedUser.getUsername());
+        user.setPassword(updatedUser.getPassword());
+        user.setFirstname(updatedUser.getFirstname());
+        user.setLastname(updatedUser.getLastname());
+        user.setEmail(updatedUser.getEmail());
+        user.setAvatar(updatedUser.getAvatar());
+        user.setFavoriteTeams(updatedUser.getFavoriteTeams());
+        user.setRoles(updatedUser.getRoles());
+        user.setPersonalFormations(updatedUser.getPersonalFormations());
+
+        User savedUser = userRepository.save(user);
+        return UserMappers.mapToUserDto(savedUser);
+    }
 }

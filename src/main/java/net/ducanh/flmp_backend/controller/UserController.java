@@ -110,4 +110,11 @@ public class UserController {
         UserDto userDto = userService.removeFavoriteTeam(userId, favoriteTeamId);
         return ResponseEntity.ok(userDto);
     }
+
+    @PutMapping("/{username}/update-all")
+    public ResponseEntity<UserDto> updateUserByUsername (@PathVariable("username") String username,
+                                                         @RequestBody UserDto updatedUser) {
+        UserDto userDto = userService.updateUserByUsername(username, updatedUser);
+        return ResponseEntity.ok(userDto);
+    }
 }
