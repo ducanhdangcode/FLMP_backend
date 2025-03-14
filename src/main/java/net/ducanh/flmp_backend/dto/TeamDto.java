@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.ducanh.flmp_backend.entity.CustomEntity.TeamDetailTrophy;
 import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class TeamDto {
     private long id;
     private String name;
     private String color;
-    private List<Integer> trophies;
+    private List<TeamDetailTrophy> trophies;
     private String chairmanName;
     private String chairmanDescription;
     private List<String> videoLinks;

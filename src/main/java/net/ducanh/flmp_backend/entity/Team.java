@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.ducanh.flmp_backend.entity.CustomEntity.TeamDetailTrophy;
 import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.List;
@@ -28,7 +29,8 @@ public class Team {
     private String color;
 
     @Column(name = "Trophies")
-    private List<Integer> trophies;
+    @ElementCollection
+    private List<TeamDetailTrophy> trophies;
 
     @Column(name = "Chairman-name")
     private String chairmanName;

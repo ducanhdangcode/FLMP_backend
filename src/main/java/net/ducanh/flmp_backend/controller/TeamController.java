@@ -2,8 +2,11 @@ package net.ducanh.flmp_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.TeamDto;
+import net.ducanh.flmp_backend.entity.Team;
 import net.ducanh.flmp_backend.service.TeamService;
 import org.hibernate.sql.Update;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +28,10 @@ public class TeamController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TeamDto>> getAllTeams() {
-        List<TeamDto> teams = teamService.getAllTeams();
-        return ResponseEntity.ok(teams);
+    public ResponseEntity<Page<Team>> getAllTeams (@RequestParam(defaultValue = "1") int page,
+                                   @RequestParam(defaultValue = "10") int size) {
+        Page<Team> pagedTeam = teamService.getAllTeams(PageRequest.of(page, size));
+        return ResponseEntity.ok(pagedTeam);
     }
 
     @GetMapping("{id}")

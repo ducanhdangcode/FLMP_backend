@@ -8,6 +8,8 @@ import net.ducanh.flmp_backend.mapper.TeamMappers;
 import net.ducanh.flmp_backend.mapper.UserMappers;
 import net.ducanh.flmp_backend.repository.TeamRepository;
 import net.ducanh.flmp_backend.service.TeamService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,9 +27,8 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public List<TeamDto> getAllTeams() {
-        List<Team> teams = teamRepository.findAll();
-        return teams.stream().map((team) -> TeamMappers.mapToTeamDto(team)).collect(Collectors.toList());
+    public Page<Team> getAllTeams(Pageable pageable) {
+        return teamRepository.findAll(pageable);
     }
 
     @Override
