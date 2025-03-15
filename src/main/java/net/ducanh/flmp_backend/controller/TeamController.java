@@ -52,4 +52,16 @@ public class TeamController {
         TeamDto teamDto = teamService.updateFavoriteState(teamId, favoriteState);
         return ResponseEntity.ok(teamDto);
     }
+
+    @GetMapping("/get-by-name/{team-name}")
+    public ResponseEntity<TeamDto> getTeamByTeamName (@PathVariable("team-name") String teamName) {
+        TeamDto teamDto = teamService.getTeamByTeamName(teamName);
+        return ResponseEntity.ok(teamDto);
+    }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    public ResponseEntity<String> deleteTeamById (@PathVariable("id") Long teamId) {
+        String responseString = teamService.deleteTeamById(teamId);
+        return ResponseEntity.ok(responseString);
+    }
 }

@@ -68,4 +68,18 @@ public class TeamServiceImpl implements TeamService {
         Team savedTeam = teamRepository.save(team);
         return TeamMappers.mapToTeamDto(savedTeam);
     }
+
+    @Override
+    public TeamDto getTeamByTeamName(String teamName) {
+        Team team = teamRepository.findByName(teamName).orElseThrow(
+                () -> new ResourceNotFoundException("Team is not existed with the given name: " + teamName)
+        );
+        return TeamMappers.mapToTeamDto(team);
+    }
+
+    @Override
+    public String deleteTeamById(Long teamId) {
+        teamRepository.deleteById(teamId);
+        return "Delete team successfully";
+    }
 }
