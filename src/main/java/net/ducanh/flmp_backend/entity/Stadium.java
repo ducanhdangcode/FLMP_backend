@@ -20,6 +20,9 @@ public class Stadium {
    @Column(name = "name")
    private String name;
 
+   @Column(name = "team-name")
+   private String teamName;
+
    @Column(name = "total-seat")
    private String totalSeat;
 

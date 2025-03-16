@@ -12,6 +12,7 @@ import lombok.Setter;
 public class StadiumDto {
     private Long id;
     private String name;
+    private String teamName;
     private String totalSeat;
     private String location;
     private String openDate;

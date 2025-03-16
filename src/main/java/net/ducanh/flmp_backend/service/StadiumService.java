@@ -12,4 +12,6 @@ public interface StadiumService {
     StadiumDto updateStadium(Long stadiumId, StadiumDto stadiumDto);
 
     StadiumDto getStadiumById (Long stadiumId);
+
+    StadiumDto getStadiumByTeamName (String teamName);
 }

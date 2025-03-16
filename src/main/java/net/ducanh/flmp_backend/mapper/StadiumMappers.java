@@ -8,6 +8,7 @@ public class StadiumMappers {
         return new StadiumDto (
                 stadium.getId(),
                 stadium.getName(),
+                stadium.getTeamName(),
                 stadium.getTotalSeat(),
                 stadium.getLocation(),
                 stadium.getOpenDate(),
@@ -20,6 +21,7 @@ public class StadiumMappers {
         return new Stadium (
                 stadiumDto.getId(),
                 stadiumDto.getName(),
+                stadiumDto.getTeamName(),
                 stadiumDto.getTotalSeat(),
                 stadiumDto.getLocation(),
                 stadiumDto.getOpenDate(),

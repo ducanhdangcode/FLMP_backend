@@ -35,6 +35,7 @@ public class StadiumServiceImpl implements StadiumService {
                 () -> new ResourceNotFoundException("Stadium is not existed with the given id: " + stadiumId)
         );
         stadium.setName(stadiumDto.getName());
+        stadium.setTeamName(stadiumDto.getTeamName());
         stadium.setTotalSeat(stadiumDto.getTotalSeat());
         stadium.setLocation(stadiumDto.getLocation());
         stadium.setOpenDate(stadiumDto.getOpenDate());
@@ -49,6 +50,14 @@ public class StadiumServiceImpl implements StadiumService {
     public StadiumDto getStadiumById(Long stadiumId) {
         Stadium stadium = stadiumRepository.findById(stadiumId).orElseThrow(
                 () -> new ResourceNotFoundException("Stadium is not existed with the given id: " + stadiumId)
+        );
+        return StadiumMappers.mapToStadiumDto(stadium);
+    }
+
+    @Override
+    public StadiumDto getStadiumByTeamName(String teamName) {
+        Stadium stadium = stadiumRepository.findByTeamName(teamName).orElseThrow(
+                () -> new ResourceNotFoundException("Stadium is not existed with the given team name: " + teamName)
         );
         return StadiumMappers.mapToStadiumDto(stadium);
     }

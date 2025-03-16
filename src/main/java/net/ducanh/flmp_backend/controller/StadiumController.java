@@ -41,4 +41,10 @@ public class StadiumController {
         StadiumDto stadiumDto = stadiumService.getStadiumById(stadiumId);
         return ResponseEntity.ok(stadiumDto);
     }
+
+    @GetMapping("/get-by-team-name/{team-name}")
+    public ResponseEntity<StadiumDto> getStadiumByTeamName (@PathVariable("team-name") String teamName) {
+        StadiumDto stadiumDto = stadiumService.getStadiumByTeamName(teamName);
+        return ResponseEntity.ok(stadiumDto);
+    }
 }
