@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerDetailRating;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerPriorityPosition;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
+import net.ducanh.flmp_backend.entity.CustomEntity.*;
 
 import java.util.List;
 
@@ -44,4 +41,5 @@ public class PlayerDto {
     private List<PlayerStats> stats;
     private List<PlayerDetailRating> playerRatings;
     private List<PlayerPriorityPosition> priorityPositions;
+    private List<DetailTransfer> transfers;
 }

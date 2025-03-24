@@ -33,7 +33,8 @@ public class PlayerMappers {
                 player.getContracts(),
                 player.getStats(),
                 player.getPlayerRatings(),
-                player.getPriorityPositions()
+                player.getPriorityPositions(),
+                player.getTransfers()
         );
     }
 
@@ -66,7 +67,8 @@ public class PlayerMappers {
                 playerDto.getContracts(),
                 playerDto.getStats(),
                 playerDto.getPlayerRatings(),
-                playerDto.getPriorityPositions()
+                playerDto.getPriorityPositions(),
+                playerDto.getTransfers()
         );
     }
 }

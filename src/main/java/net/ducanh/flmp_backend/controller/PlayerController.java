@@ -2,11 +2,8 @@ package net.ducanh.flmp_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerDetailRating;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerPriorityPosition;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
-import net.ducanh.flmp_backend.service.PlayerService;
+import net.ducanh.flmp_backend.entity.CustomEntity.*;
+import net.ducanh.flmp_backend.service.IPlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/players")
 public class PlayerController {
-    private PlayerService playerService;
+    private IPlayerService playerService;
 
     @PostMapping
     public ResponseEntity<PlayerDto> createPlayer(@RequestBody PlayerDto playerDto) {
@@ -124,5 +121,11 @@ public class PlayerController {
                                                                     @RequestBody List<PlayerPriorityPosition> priorityPositions) {
         PlayerDto playerDto = playerService.updatePlayerPriorityPositions(playerName, priorityPositions);
         return ResponseEntity.ok(playerDto);
+    }
+
+    @GetMapping("/name/{player-name}/get-transfers")
+    public ResponseEntity<List<DetailTransfer>> getPlayerTransfers (@PathVariable("player-name") String playerName) {
+        List<DetailTransfer> transfers = playerService.getPlayerTransfers(playerName);
+        return ResponseEntity.ok(transfers);
     }
 }

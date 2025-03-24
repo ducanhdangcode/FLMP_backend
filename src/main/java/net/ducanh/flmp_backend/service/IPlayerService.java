@@ -1,14 +1,11 @@
 package net.ducanh.flmp_backend.service;
 
 import net.ducanh.flmp_backend.dto.PlayerDto;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerContract;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerDetailRating;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerPriorityPosition;
-import net.ducanh.flmp_backend.entity.CustomEntity.PlayerStats;
+import net.ducanh.flmp_backend.entity.CustomEntity.*;
 
 import java.util.List;
 
-public interface PlayerService {
+public interface IPlayerService {
     PlayerDto createPlayer(PlayerDto playerDto);
 
     List<PlayerDto> getAllPlayers();
@@ -40,4 +37,6 @@ public interface PlayerService {
     PlayerDto updatePlayerRatings (String playerName, List<PlayerDetailRating> playerRatings);
 
     PlayerDto updatePlayerPriorityPositions (String playerName, List<PlayerPriorityPosition> priorityPositions);
+
+    List<DetailTransfer> getPlayerTransfers (String playerName);
 }
