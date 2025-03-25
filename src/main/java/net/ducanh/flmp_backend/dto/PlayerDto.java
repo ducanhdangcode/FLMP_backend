@@ -42,4 +42,5 @@ public class PlayerDto {
     private List<PlayerDetailRating> playerRatings;
     private List<PlayerPriorityPosition> priorityPositions;
     private List<DetailTransfer> transfers;
+    private List<DetailYouthClub> youthClubs;
 }

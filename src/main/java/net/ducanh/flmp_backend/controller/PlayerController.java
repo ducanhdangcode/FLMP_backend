@@ -3,6 +3,7 @@ package net.ducanh.flmp_backend.controller;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.*;
+import net.ducanh.flmp_backend.entity.Player;
 import net.ducanh.flmp_backend.service.IPlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -127,5 +128,12 @@ public class PlayerController {
     public ResponseEntity<List<DetailTransfer>> getPlayerTransfers (@PathVariable("player-name") String playerName) {
         List<DetailTransfer> transfers = playerService.getPlayerTransfers(playerName);
         return ResponseEntity.ok(transfers);
+    }
+
+    @PutMapping("/name/{player-name}/update-youth-clubs")
+    public ResponseEntity<PlayerDto> updatePlayerYouthClubs (@PathVariable("player-name") String playerName,
+                                                             @RequestBody List<DetailYouthClub> youthClubs) {
+        PlayerDto playerDto = playerService.updatePlayerYouthClubs(playerName, youthClubs);
+        return ResponseEntity.ok(playerDto);
     }
 }

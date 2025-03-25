@@ -34,7 +34,8 @@ public class PlayerMappers {
                 player.getStats(),
                 player.getPlayerRatings(),
                 player.getPriorityPositions(),
-                player.getTransfers()
+                player.getTransfers(),
+                player.getYouthClubs()
         );
     }
 
@@ -68,7 +69,8 @@ public class PlayerMappers {
                 playerDto.getStats(),
                 playerDto.getPlayerRatings(),
                 playerDto.getPriorityPositions(),
-                playerDto.getTransfers()
+                playerDto.getTransfers(),
+                playerDto.getYouthClubs()
         );
     }
 }

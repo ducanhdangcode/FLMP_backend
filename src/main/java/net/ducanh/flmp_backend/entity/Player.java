@@ -108,4 +108,8 @@ public class Player {
     @Column(name = "transfers")
     @ElementCollection
     private List<DetailTransfer> transfers;
+
+    @Column(name = "youth-clubs")
+    @ElementCollection
+    private List<DetailYouthClub> youthClubs;
 }

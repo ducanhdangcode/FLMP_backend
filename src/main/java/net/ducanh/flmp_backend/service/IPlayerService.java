@@ -39,4 +39,6 @@ public interface IPlayerService {
     PlayerDto updatePlayerPriorityPositions (String playerName, List<PlayerPriorityPosition> priorityPositions);
 
     List<DetailTransfer> getPlayerTransfers (String playerName);
+
+    PlayerDto updatePlayerYouthClubs (String playerName, List<DetailYouthClub> youthClubs);
 }
