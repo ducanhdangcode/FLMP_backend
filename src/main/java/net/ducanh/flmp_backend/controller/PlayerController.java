@@ -143,4 +143,11 @@ public class PlayerController {
         PlayerDto playerDto = playerService.updatePlayerMarketValues(playerName, personalMarketValues);
         return ResponseEntity.ok(playerDto);
     }
+
+    @PutMapping("/name/{player-name}/update-rumours")
+    public ResponseEntity<PlayerDto> updatePlayerRumours (@PathVariable("player-name") String playerName,
+                                                    @RequestBody List<DetailRumour> rumours) {
+        PlayerDto playerDto = playerService.updatePlayerRumours(playerName, rumours);
+        return ResponseEntity.ok(playerDto);
+    }
 }

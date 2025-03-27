@@ -44,4 +44,6 @@ public interface IPlayerService {
     PlayerDto updatePlayerYouthClubs (String playerName, List<DetailYouthClub> youthClubs);
 
     PlayerDto updatePlayerMarketValues (String playerName, List<DetailPlayerMarketValue> personalMarketValues);
+
+    PlayerDto updatePlayerRumours (String playerName, List<DetailRumour> rumours);
 }
