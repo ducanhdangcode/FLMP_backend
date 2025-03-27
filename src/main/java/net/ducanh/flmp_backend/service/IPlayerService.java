@@ -2,6 +2,7 @@ package net.ducanh.flmp_backend.service;
 
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.*;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailPlayerMarketValue;
 
 import java.util.List;
 
@@ -41,4 +42,6 @@ public interface IPlayerService {
     List<DetailTransfer> getPlayerTransfers (String playerName);
 
     PlayerDto updatePlayerYouthClubs (String playerName, List<DetailYouthClub> youthClubs);
+
+    PlayerDto updatePlayerMarketValues (String playerName, List<DetailPlayerMarketValue> personalMarketValues);
 }

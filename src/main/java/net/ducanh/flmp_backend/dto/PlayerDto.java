@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.ducanh.flmp_backend.entity.CustomEntity.*;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailPlayerMarketValue;
 
 import java.util.List;
 
@@ -43,4 +44,5 @@ public class PlayerDto {
     private List<PlayerPriorityPosition> priorityPositions;
     private List<DetailTransfer> transfers;
     private List<DetailYouthClub> youthClubs;
+    private List<DetailPlayerMarketValue> personalMarketValues;
 }

@@ -3,6 +3,7 @@ package net.ducanh.flmp_backend.service.impl;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.*;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailPlayerMarketValue;
 import net.ducanh.flmp_backend.entity.Player;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
 import net.ducanh.flmp_backend.mapper.PlayerMappers;
@@ -248,6 +249,16 @@ public class PlayerServiceImpl implements IPlayerService {
                 () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
         );
         player.setYouthClubs(youthClubs);
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
+    }
+
+    @Override
+    public PlayerDto updatePlayerMarketValues(String playerName, List<DetailPlayerMarketValue> personalMarketValues) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        player.setPersonalMarketValues(personalMarketValues);
         Player savedPlayer = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(savedPlayer);
     }

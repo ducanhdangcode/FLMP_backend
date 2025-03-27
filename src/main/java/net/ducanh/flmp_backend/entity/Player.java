@@ -112,4 +112,8 @@ public class Player {
     @Column(name = "youth-clubs")
     @ElementCollection
     private List<DetailYouthClub> youthClubs;
+
+    @Column(name = "detail-market-value")
+    @ElementCollection
+    private List<DetailPlayerMarketValue> personalMarketValues;
 }

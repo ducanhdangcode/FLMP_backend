@@ -35,7 +35,8 @@ public class PlayerMappers {
                 player.getPlayerRatings(),
                 player.getPriorityPositions(),
                 player.getTransfers(),
-                player.getYouthClubs()
+                player.getYouthClubs(),
+                player.getPersonalMarketValues()
         );
     }
 
@@ -70,7 +71,8 @@ public class PlayerMappers {
                 playerDto.getPlayerRatings(),
                 playerDto.getPriorityPositions(),
                 playerDto.getTransfers(),
-                playerDto.getYouthClubs()
+                playerDto.getYouthClubs(),
+                playerDto.getPersonalMarketValues()
         );
     }
 }
