@@ -120,4 +120,8 @@ public class Player {
     @Column(name = "rumours")
     @ElementCollection
     private List<DetailRumour> rumours;
+
+    @Column(name = "national-team-stats")
+    @ElementCollection
+    private List<DetailNationalTeamStat> nationalTeamStats;
 }

@@ -150,4 +150,11 @@ public class PlayerController {
         PlayerDto playerDto = playerService.updatePlayerRumours(playerName, rumours);
         return ResponseEntity.ok(playerDto);
     }
+
+    @PutMapping("/name/{player-name}/update-national-team-stats")
+    public ResponseEntity<PlayerDto> updatePlayerNationalTeamStats (@PathVariable("player-name") String playerName,
+                                                                    @RequestBody List<DetailNationalTeamStat> nationalTeamStats) {
+        PlayerDto playerDto = playerService.updatePlayerNationalTeamStats(playerName, nationalTeamStats);
+        return ResponseEntity.ok(playerDto);
+    }
 }

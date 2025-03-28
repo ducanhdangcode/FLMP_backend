@@ -66,6 +66,7 @@ public class PlayerServiceImpl implements IPlayerService {
         player.setTransfers(updatedPlayer.getTransfers());
         player.setYouthClubs(updatedPlayer.getYouthClubs());
         player.setRumours(updatedPlayer.getRumours());
+        player.setNationalTeamStats(updatedPlayer.getNationalTeamStats());
 
         Player updatedPlayerObj = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(updatedPlayerObj);
@@ -121,6 +122,7 @@ public class PlayerServiceImpl implements IPlayerService {
         player.setTransfers(updatedPlayer.getTransfers());
         player.setYouthClubs(updatedPlayer.getYouthClubs());
         player.setRumours(updatedPlayer.getRumours());
+        player.setNationalTeamStats(updatedPlayer.getNationalTeamStats());
 
         Player updatedPlayerObj = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(updatedPlayerObj);
@@ -271,6 +273,16 @@ public class PlayerServiceImpl implements IPlayerService {
                 () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
         );
         player.setRumours(rumours);
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
+    }
+
+    @Override
+    public PlayerDto updatePlayerNationalTeamStats(String playerName, List<DetailNationalTeamStat> nationalTeamStats) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        player.setNationalTeamStats(nationalTeamStats);
         Player savedPlayer = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(savedPlayer);
     }
