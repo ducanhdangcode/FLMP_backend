@@ -38,7 +38,8 @@ public class PlayerMappers {
                 player.getYouthClubs(),
                 player.getPersonalMarketValues(),
                 player.getRumours(),
-                player.getNationalTeamStats()
+                player.getNationalTeamStats(),
+                player.getDetailMatchStats()
         );
     }
 
@@ -76,7 +77,8 @@ public class PlayerMappers {
                 playerDto.getYouthClubs(),
                 playerDto.getPersonalMarketValues(),
                 playerDto.getRumours(),
-                playerDto.getNationalTeamStats()
+                playerDto.getNationalTeamStats(),
+                playerDto.getDetailMatchStats()
         );
     }
 }

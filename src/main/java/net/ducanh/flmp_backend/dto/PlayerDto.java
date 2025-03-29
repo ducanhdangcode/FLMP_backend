@@ -47,4 +47,5 @@ public class PlayerDto {
     private List<DetailPlayerMarketValue> personalMarketValues;
     private List<DetailRumour> rumours;
     private List<DetailNationalTeamStat> nationalTeamStats;
+    private List<DetailMatchStats> detailMatchStats;
 }

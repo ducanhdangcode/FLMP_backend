@@ -124,4 +124,8 @@ public class Player {
     @Column(name = "national-team-stats")
     @ElementCollection
     private List<DetailNationalTeamStat> nationalTeamStats;
+
+    @Column(name = "detail-match-stat")
+    @ElementCollection
+    private List<DetailMatchStats> detailMatchStats;
 }

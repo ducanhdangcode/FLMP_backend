@@ -48,4 +48,10 @@ public interface IPlayerService {
     PlayerDto updatePlayerRumours (String playerName, List<DetailRumour> rumours);
 
     PlayerDto updatePlayerNationalTeamStats (String playerName, List<DetailNationalTeamStat> nationalTeamStats);
+
+    PlayerDto updatePlayerDetailMatchStats (String playerName, List<DetailMatchStats> detailMatchStats);
+
+    PlayerDto addMatchStat (String playerName, DetailMatchStats matchStat);
+
+    List<DetailMatchStats> getMatchStatByCompetition (String playerName, String competitionName);
 }

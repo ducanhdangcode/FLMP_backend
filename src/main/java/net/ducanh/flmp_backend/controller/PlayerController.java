@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.PlayerDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.*;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailPlayerMarketValue;
+import net.ducanh.flmp_backend.entity.Player;
 import net.ducanh.flmp_backend.service.IPlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -156,5 +157,25 @@ public class PlayerController {
                                                                     @RequestBody List<DetailNationalTeamStat> nationalTeamStats) {
         PlayerDto playerDto = playerService.updatePlayerNationalTeamStats(playerName, nationalTeamStats);
         return ResponseEntity.ok(playerDto);
+    }
+
+    @PutMapping("/name/{player-name}/update-detail-match-stats")
+    public ResponseEntity<PlayerDto> updatePlayerDetailMatchStats (@PathVariable("player-name") String playerName,
+                                                                   @RequestBody List<DetailMatchStats> detailMatchStats) {
+        PlayerDto playerDto = playerService.updatePlayerDetailMatchStats(playerName, detailMatchStats);
+        return ResponseEntity.ok(playerDto);
+    }
+
+    @PutMapping("/name/{player-name}/add-match-stat")
+    public ResponseEntity<PlayerDto> addMatchStat (@PathVariable("player-name") String playerName,
+                                                   @RequestBody DetailMatchStats matchStat) {
+        PlayerDto playerDto = playerService.addMatchStat(playerName, matchStat);
+        return ResponseEntity.ok(playerDto);
+    }
+
+    @GetMapping("/name/{player-name}/get-match-stat-competition/{competition-name}")
+    public ResponseEntity<List<DetailMatchStats>> getMatchStatByCompetitionName (@PathVariable("player-name") String playerName, @PathVariable("competition-name") String competitionName) {
+        List<DetailMatchStats> detailMatchStats = playerService.getMatchStatByCompetition(playerName, competitionName);
+        return ResponseEntity.ok(detailMatchStats);
     }
 }

@@ -286,4 +286,36 @@ public class PlayerServiceImpl implements IPlayerService {
         Player savedPlayer = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(savedPlayer);
     }
+
+    @Override
+    public PlayerDto updatePlayerDetailMatchStats(String playerName, List<DetailMatchStats> detailMatchStats) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        player.setDetailMatchStats(detailMatchStats);
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
+    }
+
+    @Override
+    public PlayerDto addMatchStat(String playerName, DetailMatchStats matchStat) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<DetailMatchStats> detailMatchStats = player.getDetailMatchStats();
+        detailMatchStats.add(matchStat);
+        player.setDetailMatchStats(new ArrayList<>(detailMatchStats));
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
+    }
+
+    @Override
+    public List<DetailMatchStats> getMatchStatByCompetition(String playerName, String competitionName) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<DetailMatchStats> detailMatchStats =
+                player.getDetailMatchStats().stream().filter(stat -> stat.getCompetitionName().equals(competitionName)).collect(Collectors.toList());
+        return detailMatchStats;
+    }
 }
