@@ -54,4 +54,6 @@ public interface IPlayerService {
     PlayerDto addMatchStat (String playerName, DetailMatchStats matchStat);
 
     List<DetailMatchStats> getMatchStatByCompetition (String playerName, String competitionName);
+
+    PlayerDto addPersonalDetailNews (String playerName, PersonalDetailNews personalDetailNew);
 }

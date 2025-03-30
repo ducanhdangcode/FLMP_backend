@@ -178,4 +178,11 @@ public class PlayerController {
         List<DetailMatchStats> detailMatchStats = playerService.getMatchStatByCompetition(playerName, competitionName);
         return ResponseEntity.ok(detailMatchStats);
     }
+
+    @PutMapping("name/{player-name}/add-personal-detail-news")
+    public ResponseEntity<PlayerDto> addPersonalDetailNews (@PathVariable("player-name") String playerName,
+                                                            @RequestBody PersonalDetailNews personalDetailNew) {
+        PlayerDto playerDto = playerService.addPersonalDetailNews(playerName, personalDetailNew);
+        return ResponseEntity.ok(playerDto);
+    }
 }

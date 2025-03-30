@@ -128,4 +128,8 @@ public class Player {
     @Column(name = "detail-match-stat")
     @ElementCollection
     private List<DetailMatchStats> detailMatchStats;
+
+    @Column(name = "personal-detail-news")
+    @ElementCollection
+    private List<PersonalDetailNews> personalDetailNews;
 }

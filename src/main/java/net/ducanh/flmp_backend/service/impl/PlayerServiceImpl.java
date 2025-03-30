@@ -318,4 +318,16 @@ public class PlayerServiceImpl implements IPlayerService {
                 player.getDetailMatchStats().stream().filter(stat -> stat.getCompetitionName().equals(competitionName)).collect(Collectors.toList());
         return detailMatchStats;
     }
+
+    @Override
+    public PlayerDto addPersonalDetailNews(String playerName, PersonalDetailNews personalDetailNew) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<PersonalDetailNews> personalDetailNews = player.getPersonalDetailNews();
+        personalDetailNews.add(personalDetailNew);
+        player.setPersonalDetailNews(new ArrayList<>(personalDetailNews));
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
+    }
 }
