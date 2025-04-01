@@ -330,4 +330,16 @@ public class PlayerServiceImpl implements IPlayerService {
         Player savedPlayer = playerRepository.save(player);
         return PlayerMappers.mapToPlayerDto(savedPlayer);
     }
+
+    @Override
+    public String deletePersonalDetailNews(String playerName, int newsId) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<PersonalDetailNews> personalDetailNews = player.getPersonalDetailNews();
+        personalDetailNews.remove(newsId);
+        player.setPersonalDetailNews(new ArrayList<>(personalDetailNews));
+        Player savedPlayer = playerRepository.save(player);
+        return "Delete news successfully";
+    }
 }

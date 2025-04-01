@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -179,10 +180,20 @@ public class PlayerController {
         return ResponseEntity.ok(detailMatchStats);
     }
 
-    @PutMapping("name/{player-name}/add-personal-detail-news")
+    @PostMapping("name/{player-name}/add-personal-detail-news")
     public ResponseEntity<PlayerDto> addPersonalDetailNews (@PathVariable("player-name") String playerName,
                                                             @RequestBody PersonalDetailNews personalDetailNew) {
+        if (personalDetailNew.getCreatedAt() == null) {
+            personalDetailNew.setCreatedAt(LocalDateTime.now());
+        }
         PlayerDto playerDto = playerService.addPersonalDetailNews(playerName, personalDetailNew);
         return ResponseEntity.ok(playerDto);
+    }
+
+    @DeleteMapping("name/{player-name}/delete-personal-detail-news/{id}")
+    public ResponseEntity<String> deletePersonalDetailNews (@PathVariable("player-name") String playerName,
+                                                            @PathVariable("id") int newsId) {
+        String response = playerService.deletePersonalDetailNews(playerName, newsId);
+        return ResponseEntity.ok(response);
     }
 }
