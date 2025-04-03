@@ -2,8 +2,7 @@ package net.ducanh.flmp_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.CoachDto;
-import net.ducanh.flmp_backend.service.CoachService;
-import org.apache.coyote.Response;
+import net.ducanh.flmp_backend.service.ICoachService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/coaches")
 public class CoachController {
-    private CoachService coachService;
+    private ICoachService coachService;
 
     @PostMapping
     public ResponseEntity<CoachDto> createCoach(@RequestBody CoachDto coachDto) {

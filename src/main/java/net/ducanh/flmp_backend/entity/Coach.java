@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 
 import java.util.List;
 
@@ -45,4 +46,8 @@ public class Coach {
 
     @Column(name = "point-per-match")
     private String pointPerMatch;
+
+    @Column(name = "detail-stats")
+    @ElementCollection
+    private List<DetailCoachStat> detailStats;
 }

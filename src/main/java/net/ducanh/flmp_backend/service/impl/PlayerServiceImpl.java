@@ -248,6 +248,18 @@ public class PlayerServiceImpl implements IPlayerService {
     }
 
     @Override
+    public PlayerDto addPlayerTransfers(String playerName, DetailTransfer transfer) {
+        Player player = playerRepository.findByName(playerName).orElseThrow(
+                () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)
+        );
+        List<DetailTransfer> transfers = player.getTransfers();
+        transfers.add(transfer);
+        player.setTransfers(new ArrayList<>(transfers));
+        Player savedPlayer = playerRepository.save(player);
+        return PlayerMappers.mapToPlayerDto(savedPlayer);
+    }
+
+    @Override
     public PlayerDto updatePlayerYouthClubs(String playerName, List<DetailYouthClub> youthClubs) {
         Player player = playerRepository.findByName(playerName).orElseThrow(
                 () -> new ResourceNotFoundException("Player is not existed with the given name: " + playerName)

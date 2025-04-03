@@ -41,6 +41,8 @@ public interface IPlayerService {
 
     List<DetailTransfer> getPlayerTransfers (String playerName);
 
+    PlayerDto addPlayerTransfers (String playerName, DetailTransfer transfer);
+
     PlayerDto updatePlayerYouthClubs (String playerName, List<DetailYouthClub> youthClubs);
 
     PlayerDto updatePlayerMarketValues (String playerName, List<DetailPlayerMarketValue> personalMarketValues);

@@ -15,7 +15,8 @@ public class CoachMappers {
                 coach.getNationalityImage(),
                 coach.getTotalMatches(),
                 coach.getCurrentMatches(),
-                coach.getPointPerMatch()
+                coach.getPointPerMatch(),
+                coach.getDetailStats()
         );
     }
 
@@ -30,7 +31,8 @@ public class CoachMappers {
                 coachDto.getNationalityImage(),
                 coachDto.getTotalMatches(),
                 coachDto.getCurrentMatches(),
-                coachDto.getPointPerMatch()
+                coachDto.getPointPerMatch(),
+                coachDto.getDetailStats()
         );
     }
 }

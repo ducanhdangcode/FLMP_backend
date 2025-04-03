@@ -132,6 +132,13 @@ public class PlayerController {
         return ResponseEntity.ok(transfers);
     }
 
+    @PostMapping("/name/{player-name}/add-transfer")
+    public ResponseEntity<PlayerDto> addPlayerTransfer (@PathVariable("player-name") String playerName,
+                                                        @RequestBody DetailTransfer transfer) {
+        PlayerDto playerDto = playerService.addPlayerTransfers(playerName, transfer);
+        return ResponseEntity.ok(playerDto);
+    }
+
     @PutMapping("/name/{player-name}/update-youth-clubs")
     public ResponseEntity<PlayerDto> updatePlayerYouthClubs (@PathVariable("player-name") String playerName,
                                                              @RequestBody List<DetailYouthClub> youthClubs) {

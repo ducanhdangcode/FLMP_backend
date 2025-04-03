@@ -6,7 +6,7 @@ import net.ducanh.flmp_backend.entity.Coach;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
 import net.ducanh.flmp_backend.mapper.CoachMappers;
 import net.ducanh.flmp_backend.repository.CoachRepository;
-import net.ducanh.flmp_backend.service.CoachService;
+import net.ducanh.flmp_backend.service.ICoachService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CoachServiceImpl implements CoachService {
+public class CoachServiceImpl implements ICoachService {
     private CoachRepository coachRepository;
     @Override
     public CoachDto createCoach(CoachDto coachDto) {
