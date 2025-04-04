@@ -36,6 +36,7 @@ public class CoachServiceImpl implements ICoachService {
         );
         coach.setName(coachDto.getName());
         coach.setImageLink(coachDto.getImageLink());
+        coach.setTeamName(coachDto.getTeamName());
         coach.setBirthDate(coachDto.getBirthDate());
         coach.setNationality(coachDto.getNationality());
         coach.setImageLink(coachDto.getImageLink());
@@ -52,6 +53,14 @@ public class CoachServiceImpl implements ICoachService {
     public CoachDto getCoachById(Long coachId) {
         Coach coach = coachRepository.findById(coachId).orElseThrow(
                 () -> new ResourceNotFoundException("Coach is not existed with the given id: " + coachId)
+        );
+        return CoachMappers.mapToCoachDto(coach);
+    }
+
+    @Override
+    public CoachDto getCoachByTeamName(String teamName) {
+        Coach coach = coachRepository.findByTeamName(teamName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given team name: " + teamName)
         );
         return CoachMappers.mapToCoachDto(coach);
     }

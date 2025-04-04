@@ -26,6 +26,9 @@ public class Coach {
     @Column(name = "image-link", length = 1000000)
     private String imageLink;
 
+    @Column(name = "current-team")
+    private String teamName;
+
     @Column(name = "nationality")
     private String nationality;
 

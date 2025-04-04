@@ -15,7 +15,7 @@ public class DetailCoachStat {
     private String leagueType;
     private String competitionName;
     private String clubName;
-    private int match;
+    private int matchCount;
     private int win;
     private int draw;
     private int lose;

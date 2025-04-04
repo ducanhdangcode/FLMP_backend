@@ -12,4 +12,6 @@ public interface ICoachService {
     CoachDto updateCoach(Long coachId, CoachDto coachDto);
 
     CoachDto getCoachById (Long coachId);
+
+    CoachDto getCoachByTeamName (String currentTeamName);
 }

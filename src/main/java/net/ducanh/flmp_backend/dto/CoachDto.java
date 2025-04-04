@@ -16,6 +16,7 @@ public class CoachDto {
     private Long id;
     private String name;
     private String imageLink;
+    private String teamName;
     private String nationality;
     private String birthDate;
     private List<String> listTeamManaged;

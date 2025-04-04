@@ -2,6 +2,7 @@ package net.ducanh.flmp_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.CoachDto;
+import net.ducanh.flmp_backend.entity.Coach;
 import net.ducanh.flmp_backend.service.ICoachService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,12 @@ public class CoachController {
     @PutMapping("{id}")
     public ResponseEntity<CoachDto> updateCoach(@PathVariable("id") Long coachId, @RequestBody CoachDto UpdatedCoach) {
         CoachDto coachDto = coachService.updateCoach(coachId, UpdatedCoach);
+        return ResponseEntity.ok(coachDto);
+    }
+
+    @GetMapping("get-by-team-name/{team-name}")
+    public ResponseEntity<CoachDto> getCoachByTeamName (@PathVariable("team-name") String teamName) {
+        CoachDto coachDto = coachService.getCoachByTeamName(teamName);
         return ResponseEntity.ok(coachDto);
     }
 }
