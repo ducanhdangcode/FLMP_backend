@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 
 import java.util.List;
@@ -35,11 +36,29 @@ public class Coach {
     @Column(name = "birthdate")
     private String birthDate;
 
+    @Column(name = "birthPlace")
+    private String birthPlace;
+
+    @Column(name = "height")
+    private String height;
+
     @Column(name = "list-team-managed")
     private List<String> listTeamManaged;
 
     @Column(name = "nationality-image", length = 100000)
     private String nationalityImage;
+
+    @Column(name = "coaching-license")
+    private String coachingLicense;
+
+    @Column(name = "average-term")
+    private String averageTerm;
+
+    @Column(name = "preferred-formation")
+    private String preferredFormation;
+
+    @Column(name = "agent")
+    private String agent;
 
     @Column(name = "total-matches")
     private String totalMatches;
@@ -53,4 +72,8 @@ public class Coach {
     @Column(name = "detail-stats")
     @ElementCollection
     private List<DetailCoachStat> detailStats;
+
+    @Column(name = "contracts")
+    @ElementCollection
+    private List<DetailCoachContract> contracts;
 }

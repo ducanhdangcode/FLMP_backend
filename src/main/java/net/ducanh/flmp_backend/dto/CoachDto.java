@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 
 import java.util.List;
@@ -19,10 +20,17 @@ public class CoachDto {
     private String teamName;
     private String nationality;
     private String birthDate;
+    private String birthPlace;
+    private String height;
     private List<String> listTeamManaged;
     private String nationalityImage;
+    private String coachingLicense;
+    private String averageTerm;
+    private String preferredFormation;
+    private String agent;
     private String totalMatches;
     private String currentMatches;
     private String pointPerMatch;
     private List<DetailCoachStat> detailStats;
+    private List<DetailCoachContract> contracts;
 }

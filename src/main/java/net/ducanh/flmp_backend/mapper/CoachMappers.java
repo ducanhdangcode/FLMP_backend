@@ -12,12 +12,19 @@ public class CoachMappers {
                 coach.getTeamName(),
                 coach.getNationality(),
                 coach.getBirthDate(),
+                coach.getBirthPlace(),
+                coach.getHeight(),
                 coach.getListTeamManaged(),
                 coach.getNationalityImage(),
+                coach.getCoachingLicense(),
+                coach.getAverageTerm(),
+                coach.getPreferredFormation(),
+                coach.getAgent(),
                 coach.getTotalMatches(),
                 coach.getCurrentMatches(),
                 coach.getPointPerMatch(),
-                coach.getDetailStats()
+                coach.getDetailStats(),
+                coach.getContracts()
         );
     }
 
@@ -29,12 +36,19 @@ public class CoachMappers {
                 coachDto.getTeamName(),
                 coachDto.getNationality(),
                 coachDto.getBirthDate(),
+                coachDto.getBirthPlace(),
+                coachDto.getHeight(),
                 coachDto.getListTeamManaged(),
                 coachDto.getNationalityImage(),
+                coachDto.getCoachingLicense(),
+                coachDto.getAverageTerm(),
+                coachDto.getPreferredFormation(),
+                coachDto.getAgent(),
                 coachDto.getTotalMatches(),
                 coachDto.getCurrentMatches(),
                 coachDto.getPointPerMatch(),
-                coachDto.getDetailStats()
+                coachDto.getDetailStats(),
+                coachDto.getContracts()
         );
     }
 }

@@ -3,12 +3,15 @@ package net.ducanh.flmp_backend.service.impl;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.CoachDto;
 import net.ducanh.flmp_backend.entity.Coach;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
 import net.ducanh.flmp_backend.mapper.CoachMappers;
 import net.ducanh.flmp_backend.repository.CoachRepository;
 import net.ducanh.flmp_backend.service.ICoachService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,6 +47,12 @@ public class CoachServiceImpl implements ICoachService {
         coach.setTotalMatches(coachDto.getTotalMatches());
         coach.setCurrentMatches(coachDto.getCurrentMatches());
         coach.setPointPerMatch(coachDto.getPointPerMatch());
+        coach.setBirthPlace(coachDto.getBirthPlace());
+        coach.setHeight(coachDto.getHeight());
+        coach.setCoachingLicense(coachDto.getCoachingLicense());
+        coach.setAverageTerm(coachDto.getAverageTerm());
+        coach.setPreferredFormation(coachDto.getPreferredFormation());
+        coach.setAgent(coachDto.getAgent());
 
         Coach updatedCoachObj = coachRepository.save(coach);
         return CoachMappers.mapToCoachDto(updatedCoachObj);
@@ -63,5 +72,36 @@ public class CoachServiceImpl implements ICoachService {
                 () -> new ResourceNotFoundException("Coach is not existed with the given team name: " + teamName)
         );
         return CoachMappers.mapToCoachDto(coach);
+    }
+
+    @Override
+    public CoachDto getCoachByCoachName(String coachName) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        return CoachMappers.mapToCoachDto(coach);
+    }
+
+    @Override
+    public CoachDto addCoachContract(String coachName, DetailCoachContract contract) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<DetailCoachContract> contracts = coach.getContracts();
+        contracts.add(contract);
+        coach.setContracts(new ArrayList<>(contracts));
+        Coach savedCoach = coachRepository.save(coach);
+        return CoachMappers.mapToCoachDto(savedCoach);
+    }
+
+    @Override
+    public DetailCoachContract getContractByTeamName(String coachName, String teamName) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<DetailCoachContract> contracts = coach.getContracts();
+        return contracts.stream().filter(contract -> contract.getTeamName().equals(teamName)).findFirst().orElseThrow(
+                () -> new ResourceNotFoundException("Contract is not existed")
+        );
     }
 }

@@ -3,6 +3,8 @@ package net.ducanh.flmp_backend.controller;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.CoachDto;
 import net.ducanh.flmp_backend.entity.Coach;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 import net.ducanh.flmp_backend.service.ICoachService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +47,25 @@ public class CoachController {
     public ResponseEntity<CoachDto> getCoachByTeamName (@PathVariable("team-name") String teamName) {
         CoachDto coachDto = coachService.getCoachByTeamName(teamName);
         return ResponseEntity.ok(coachDto);
+    }
+
+    @GetMapping("get-by-name/{coach-name}")
+    public ResponseEntity<CoachDto> getCoachByName (@PathVariable("coach-name") String coachName) {
+        CoachDto coachDto = coachService.getCoachByCoachName(coachName);
+        return ResponseEntity.ok(coachDto);
+    }
+
+    @PostMapping("{coach-name}/add-contract")
+    public ResponseEntity<CoachDto> addCoachContract (@PathVariable("coach-name") String coachName,
+                                                      @RequestBody DetailCoachContract contract) {
+        CoachDto coachDto = coachService.addCoachContract(coachName, contract);
+        return ResponseEntity.ok(coachDto);
+    }
+
+    @GetMapping("{coach-name}/get-contract-by-team-name/{team-name}")
+    public ResponseEntity<DetailCoachContract> getContractByTeamName (@PathVariable("coach-name") String coachName,
+                                                                  @PathVariable("team-name") String teamName) {
+        DetailCoachContract contract = coachService.getContractByTeamName(coachName, teamName);
+        return ResponseEntity.ok(contract);
     }
 }
