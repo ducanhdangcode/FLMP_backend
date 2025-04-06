@@ -5,6 +5,7 @@ import net.ducanh.flmp_backend.dto.CoachDto;
 import net.ducanh.flmp_backend.entity.Coach;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
+import net.ducanh.flmp_backend.entity.CustomEntity.GroupedCoachStatByCompetition;
 import net.ducanh.flmp_backend.service.ICoachService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,5 +68,19 @@ public class CoachController {
                                                                   @PathVariable("team-name") String teamName) {
         DetailCoachContract contract = coachService.getContractByTeamName(coachName, teamName);
         return ResponseEntity.ok(contract);
+    }
+
+    @GetMapping("{coach-name}/get-grouped-stats-by-competition")
+    public ResponseEntity<List<GroupedCoachStatByCompetition>> getGroupedCoachStatsByCompetition (@PathVariable(
+            "coach-name") String coachName) {
+        List<GroupedCoachStatByCompetition> groupedStats = coachService.getGroupedCoachStatByCompetition(coachName);
+        return ResponseEntity.ok(groupedStats);
+    }
+
+    @PostMapping("{coach-name}/add-coach-stat")
+    public ResponseEntity<CoachDto> addCoachStat (@PathVariable("coach-name") String coachName,
+                                                  @RequestBody DetailCoachStat stat) {
+        CoachDto coachDto = coachService.addCoachStats(coachName, stat);
+        return ResponseEntity.ok(coachDto);
     }
 }

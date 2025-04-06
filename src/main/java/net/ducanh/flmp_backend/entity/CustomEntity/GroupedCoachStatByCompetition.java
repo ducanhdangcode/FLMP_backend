@@ -11,17 +11,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailCoachStat {
-    private String leagueType;
+public class GroupedCoachStatByCompetition {
     private String competitionName;
     private String competitionLogoLink;
-    private String season;
-    private String clubName;
-    private String clubLogoLink;
-    private int matchCount;
-    private int win;
-    private int draw;
-    private int lose;
-    private String achievedRound;
-    private String placement;
+    private int totalMatches;
+    private int totalWins;
+    private int totalDraws;
+    private int totalLoses;
 }

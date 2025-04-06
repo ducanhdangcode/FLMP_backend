@@ -5,6 +5,7 @@ import net.ducanh.flmp_backend.dto.CoachDto;
 import net.ducanh.flmp_backend.entity.Coach;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
+import net.ducanh.flmp_backend.entity.CustomEntity.GroupedCoachStatByCompetition;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
 import net.ducanh.flmp_backend.mapper.CoachMappers;
 import net.ducanh.flmp_backend.repository.CoachRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -103,5 +105,43 @@ public class CoachServiceImpl implements ICoachService {
         return contracts.stream().filter(contract -> contract.getTeamName().equals(teamName)).findFirst().orElseThrow(
                 () -> new ResourceNotFoundException("Contract is not existed")
         );
+    }
+
+    @Override
+    public List<GroupedCoachStatByCompetition> getGroupedCoachStatByCompetition(String coachName) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<DetailCoachStat> detailCoachStats = coach.getDetailStats();
+        Map<String, GroupedCoachStatByCompetition> groupedStats =
+                detailCoachStats.stream().collect(Collectors.groupingBy(DetailCoachStat::getCompetitionName,
+                        Collectors.collectingAndThen(Collectors.toList(), list -> {
+                            int totalMatches = list.stream().mapToInt(DetailCoachStat::getMatchCount).sum();
+                            int totalWins = list.stream().mapToInt(DetailCoachStat::getWin).sum();
+                            int totalDraws = list.stream().mapToInt(DetailCoachStat::getDraw).sum();
+                            int totalLoses = list.stream().mapToInt(DetailCoachStat::getLose).sum();
+
+                            return new GroupedCoachStatByCompetition(
+                                    list.get(0).getCompetitionName(),
+                                    list.get(0).getCompetitionLogoLink(),
+                                    totalMatches,
+                                    totalWins,
+                                    totalDraws,
+                                    totalLoses
+                            );
+                        })));
+        return new ArrayList<>(groupedStats.values());
+    }
+
+    @Override
+    public CoachDto addCoachStats(String coachName, DetailCoachStat stat) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<DetailCoachStat> detailCoachStats = coach.getDetailStats();
+        detailCoachStats.add(stat);
+        coach.setDetailStats(new ArrayList<>(detailCoachStats));
+        Coach savedCoach = coachRepository.save(coach);
+        return CoachMappers.mapToCoachDto(savedCoach);
     }
 }
