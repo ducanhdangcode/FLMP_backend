@@ -27,4 +27,8 @@ public interface ICoachService {
     List<GroupedCoachStatByCompetition> getGroupedCoachStatByCompetition(String coachName);
 
     CoachDto addCoachStats(String coachName, DetailCoachStat stat);
+
+    List<DetailCoachStat> getCoachStatsByCompetitionName (String coachName, String competitionName);
+
+    CoachDto updateDetailCoachStats (String coachName, List<DetailCoachStat> stats);
 }

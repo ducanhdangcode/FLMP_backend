@@ -144,4 +144,23 @@ public class CoachServiceImpl implements ICoachService {
         Coach savedCoach = coachRepository.save(coach);
         return CoachMappers.mapToCoachDto(savedCoach);
     }
+
+    @Override
+    public List<DetailCoachStat> getCoachStatsByCompetitionName(String coachName, String competitionName) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<DetailCoachStat> detailCoachStats = coach.getDetailStats();
+        return detailCoachStats.stream().filter(stat -> stat.getCompetitionName().equals(competitionName)).collect(Collectors.toList());
+    }
+
+    @Override
+    public CoachDto updateDetailCoachStats(String coachName, List<DetailCoachStat> stats) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        coach.setDetailStats(stats);
+        Coach savedCoach = coachRepository.save(coach);
+        return CoachMappers.mapToCoachDto(savedCoach);
+    }
 }

@@ -83,4 +83,18 @@ public class CoachController {
         CoachDto coachDto = coachService.addCoachStats(coachName, stat);
         return ResponseEntity.ok(coachDto);
     }
+
+    @GetMapping("{coach-name}/get-coach-stats-by-competition-name/{competition-name}")
+    public ResponseEntity<List<DetailCoachStat>> getCoachStatsByCompetitionName (@PathVariable("coach-name") String coachName, @PathVariable("competition-name") String competitionName) {
+        List<DetailCoachStat> detailCoachStats = coachService.getCoachStatsByCompetitionName(coachName,
+                competitionName);
+        return ResponseEntity.ok(detailCoachStats);
+    }
+
+    @PutMapping("{coach-name}/update-coach-stats")
+    public ResponseEntity<CoachDto> updateCoachDetailStats (@PathVariable("coach-name") String coachName,
+                                                            @RequestBody List<DetailCoachStat> stats) {
+        CoachDto coachDto = coachService.updateDetailCoachStats(coachName, stats);
+        return ResponseEntity.ok(coachDto);
+    }
 }
