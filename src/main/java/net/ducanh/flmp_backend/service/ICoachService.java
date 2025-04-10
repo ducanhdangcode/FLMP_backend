@@ -24,11 +24,13 @@ public interface ICoachService {
 
     DetailCoachContract getContractByTeamName(String coachName, String teamName);
 
-    List<GroupedCoachStatByCompetition> getGroupedCoachStatByCompetition(String coachName);
+    List<GroupedCoachStatByCompetition> getGroupedCoachStatByCompetition(String coachName, String leagueType);
 
     CoachDto addCoachStats(String coachName, DetailCoachStat stat);
 
     List<DetailCoachStat> getCoachStatsByCompetitionName (String coachName, String competitionName);
 
     CoachDto updateDetailCoachStats (String coachName, List<DetailCoachStat> stats);
+
+    List<DetailCoachStat> getCoachStatsByLeagueType (String coachName, String leagueType);
 }

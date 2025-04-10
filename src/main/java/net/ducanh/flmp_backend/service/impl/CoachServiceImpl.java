@@ -108,11 +108,12 @@ public class CoachServiceImpl implements ICoachService {
     }
 
     @Override
-    public List<GroupedCoachStatByCompetition> getGroupedCoachStatByCompetition(String coachName) {
+    public List<GroupedCoachStatByCompetition> getGroupedCoachStatByCompetition(String coachName, String leagueType) {
         Coach coach = coachRepository.findByName(coachName).orElseThrow(
                 () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
         );
-        List<DetailCoachStat> detailCoachStats = coach.getDetailStats();
+        List<DetailCoachStat> detailCoachStats =
+                coach.getDetailStats().stream().filter(stat -> stat.getLeagueType().equals(leagueType)).collect(Collectors.toList());
         Map<String, GroupedCoachStatByCompetition> groupedStats =
                 detailCoachStats.stream().collect(Collectors.groupingBy(DetailCoachStat::getCompetitionName,
                         Collectors.collectingAndThen(Collectors.toList(), list -> {
@@ -162,5 +163,13 @@ public class CoachServiceImpl implements ICoachService {
         coach.setDetailStats(stats);
         Coach savedCoach = coachRepository.save(coach);
         return CoachMappers.mapToCoachDto(savedCoach);
+    }
+
+    @Override
+    public List<DetailCoachStat> getCoachStatsByLeagueType(String coachName, String leagueType) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        return coach.getDetailStats().stream().filter(stat -> stat.getLeagueType().equals(leagueType)).collect(Collectors.toList());
     }
 }

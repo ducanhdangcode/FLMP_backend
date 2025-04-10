@@ -70,10 +70,11 @@ public class CoachController {
         return ResponseEntity.ok(contract);
     }
 
-    @GetMapping("{coach-name}/get-grouped-stats-by-competition")
+    @GetMapping("{coach-name}/get-grouped-stats-by-competition/{league-type}")
     public ResponseEntity<List<GroupedCoachStatByCompetition>> getGroupedCoachStatsByCompetition (@PathVariable(
-            "coach-name") String coachName) {
-        List<GroupedCoachStatByCompetition> groupedStats = coachService.getGroupedCoachStatByCompetition(coachName);
+            "coach-name") String coachName, @PathVariable("league-type") String leagueType) {
+        List<GroupedCoachStatByCompetition> groupedStats = coachService.getGroupedCoachStatByCompetition(coachName,
+                leagueType);
         return ResponseEntity.ok(groupedStats);
     }
 
@@ -96,5 +97,11 @@ public class CoachController {
                                                             @RequestBody List<DetailCoachStat> stats) {
         CoachDto coachDto = coachService.updateDetailCoachStats(coachName, stats);
         return ResponseEntity.ok(coachDto);
+    }
+
+    @GetMapping("{coach-name}/get-coach-stats-by-league-type/{league-type}")
+    public ResponseEntity<List<DetailCoachStat>> getCoachStatsByLeagueType (@PathVariable("coach-name") String coachName, @PathVariable("league-type") String leagueType) {
+        List<DetailCoachStat> detailCoachStats = coachService.getCoachStatsByLeagueType(coachName, leagueType);
+        return ResponseEntity.ok(detailCoachStats);
     }
 }
