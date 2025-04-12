@@ -2,6 +2,7 @@ package net.ducanh.flmp_backend.service;
 
 import net.ducanh.flmp_backend.dto.CoachDto;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachHistory;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 import net.ducanh.flmp_backend.entity.CustomEntity.GroupedCoachStatByCompetition;
 
@@ -33,4 +34,6 @@ public interface ICoachService {
     CoachDto updateDetailCoachStats (String coachName, List<DetailCoachStat> stats);
 
     List<DetailCoachStat> getCoachStatsByLeagueType (String coachName, String leagueType);
+
+    CoachDto addCoachHistory (String coachName, DetailCoachHistory history);
 }

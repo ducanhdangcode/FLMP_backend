@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.CoachDto;
 import net.ducanh.flmp_backend.entity.Coach;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachHistory;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 import net.ducanh.flmp_backend.entity.CustomEntity.GroupedCoachStatByCompetition;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
@@ -171,5 +172,17 @@ public class CoachServiceImpl implements ICoachService {
                 () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
         );
         return coach.getDetailStats().stream().filter(stat -> stat.getLeagueType().equals(leagueType)).collect(Collectors.toList());
+    }
+
+    @Override
+    public CoachDto addCoachHistory(String coachName, DetailCoachHistory history) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<DetailCoachHistory> histories = coach.getHistories();
+        histories.add(history);
+        coach.setHistories(new ArrayList<>(histories));
+        Coach savedCoach = coachRepository.save(coach);
+        return CoachMappers.mapToCoachDto(savedCoach);
     }
 }

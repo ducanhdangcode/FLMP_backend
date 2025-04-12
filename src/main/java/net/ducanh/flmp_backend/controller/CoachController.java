@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.CoachDto;
 import net.ducanh.flmp_backend.entity.Coach;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachHistory;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 import net.ducanh.flmp_backend.entity.CustomEntity.GroupedCoachStatByCompetition;
 import net.ducanh.flmp_backend.service.ICoachService;
@@ -103,5 +104,12 @@ public class CoachController {
     public ResponseEntity<List<DetailCoachStat>> getCoachStatsByLeagueType (@PathVariable("coach-name") String coachName, @PathVariable("league-type") String leagueType) {
         List<DetailCoachStat> detailCoachStats = coachService.getCoachStatsByLeagueType(coachName, leagueType);
         return ResponseEntity.ok(detailCoachStats);
+    }
+
+    @PostMapping("{coach-name}/add-coach-history")
+    public ResponseEntity<CoachDto> addCoachHistory (@PathVariable("coach-name") String coachName,
+                                                     @RequestBody DetailCoachHistory history) {
+        CoachDto coachDto = coachService.addCoachHistory(coachName, history);
+        return ResponseEntity.ok(coachDto);
     }
 }

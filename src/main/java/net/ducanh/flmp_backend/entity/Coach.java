@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachHistory;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 
 import java.util.List;
@@ -76,4 +77,8 @@ public class Coach {
     @Column(name = "contracts")
     @ElementCollection
     private List<DetailCoachContract> contracts;
+
+    @Column(name = "history")
+    @ElementCollection
+    private List<DetailCoachHistory> histories;
 }

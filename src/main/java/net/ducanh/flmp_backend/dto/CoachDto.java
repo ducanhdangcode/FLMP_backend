@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
+import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachHistory;
 import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
 
 import java.util.List;
@@ -33,4 +34,5 @@ public class CoachDto {
     private String pointPerMatch;
     private List<DetailCoachStat> detailStats;
     private List<DetailCoachContract> contracts;
+    private List<DetailCoachHistory> histories;
 }

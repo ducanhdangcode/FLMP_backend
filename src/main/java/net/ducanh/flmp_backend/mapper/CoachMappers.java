@@ -24,7 +24,8 @@ public class CoachMappers {
                 coach.getCurrentMatches(),
                 coach.getPointPerMatch(),
                 coach.getDetailStats(),
-                coach.getContracts()
+                coach.getContracts(),
+                coach.getHistories()
         );
     }
 
@@ -48,7 +49,8 @@ public class CoachMappers {
                 coachDto.getCurrentMatches(),
                 coachDto.getPointPerMatch(),
                 coachDto.getDetailStats(),
-                coachDto.getContracts()
+                coachDto.getContracts(),
+                coachDto.getHistories()
         );
     }
 }
