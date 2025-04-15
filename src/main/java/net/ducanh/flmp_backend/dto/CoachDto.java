@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachHistory;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
+import net.ducanh.flmp_backend.entity.CustomEntity.*;
 
 import java.util.List;
 
@@ -35,4 +33,6 @@ public class CoachDto {
     private List<DetailCoachStat> detailStats;
     private List<DetailCoachContract> contracts;
     private List<DetailCoachHistory> histories;
+    private List<DetailCoachRecordAgainstClub> recordsAgainstClub;
+    private List<DetailCoachRecordAgainstManager> recordsAgainstManager;
 }

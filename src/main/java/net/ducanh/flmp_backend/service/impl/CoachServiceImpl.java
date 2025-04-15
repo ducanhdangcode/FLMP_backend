@@ -3,10 +3,7 @@ package net.ducanh.flmp_backend.service.impl;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.CoachDto;
 import net.ducanh.flmp_backend.entity.Coach;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachHistory;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
-import net.ducanh.flmp_backend.entity.CustomEntity.GroupedCoachStatByCompetition;
+import net.ducanh.flmp_backend.entity.CustomEntity.*;
 import net.ducanh.flmp_backend.exception.ResourceNotFoundException;
 import net.ducanh.flmp_backend.mapper.CoachMappers;
 import net.ducanh.flmp_backend.repository.CoachRepository;
@@ -182,6 +179,30 @@ public class CoachServiceImpl implements ICoachService {
         List<DetailCoachHistory> histories = coach.getHistories();
         histories.add(history);
         coach.setHistories(new ArrayList<>(histories));
+        Coach savedCoach = coachRepository.save(coach);
+        return CoachMappers.mapToCoachDto(savedCoach);
+    }
+
+    @Override
+    public CoachDto addCoachRecordAgainstClub(String coachName, DetailCoachRecordAgainstClub record) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<DetailCoachRecordAgainstClub> records = coach.getRecordsAgainstClub();
+        records.add(record);
+        coach.setRecordsAgainstClub(new ArrayList<>(records));
+        Coach savedCoach = coachRepository.save(coach);
+        return CoachMappers.mapToCoachDto(savedCoach);
+    }
+
+    @Override
+    public CoachDto addCoachRecordAgainstManager(String coachName, DetailCoachRecordAgainstManager record) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<DetailCoachRecordAgainstManager> records = coach.getRecordsAgainstManager();
+        records.add(record);
+        coach.setRecordsAgainstManager(new ArrayList<>(records));
         Coach savedCoach = coachRepository.save(coach);
         return CoachMappers.mapToCoachDto(savedCoach);
     }

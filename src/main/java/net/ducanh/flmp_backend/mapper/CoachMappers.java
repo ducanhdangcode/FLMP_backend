@@ -25,7 +25,9 @@ public class CoachMappers {
                 coach.getPointPerMatch(),
                 coach.getDetailStats(),
                 coach.getContracts(),
-                coach.getHistories()
+                coach.getHistories(),
+                coach.getRecordsAgainstClub(),
+                coach.getRecordsAgainstManager()
         );
     }
 
@@ -50,7 +52,9 @@ public class CoachMappers {
                 coachDto.getPointPerMatch(),
                 coachDto.getDetailStats(),
                 coachDto.getContracts(),
-                coachDto.getHistories()
+                coachDto.getHistories(),
+                coachDto.getRecordsAgainstClub(),
+                coachDto.getRecordsAgainstManager()
         );
     }
 }

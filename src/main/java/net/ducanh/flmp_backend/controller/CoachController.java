@@ -3,10 +3,7 @@ package net.ducanh.flmp_backend.controller;
 import lombok.AllArgsConstructor;
 import net.ducanh.flmp_backend.dto.CoachDto;
 import net.ducanh.flmp_backend.entity.Coach;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachHistory;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
-import net.ducanh.flmp_backend.entity.CustomEntity.GroupedCoachStatByCompetition;
+import net.ducanh.flmp_backend.entity.CustomEntity.*;
 import net.ducanh.flmp_backend.service.ICoachService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -110,6 +107,20 @@ public class CoachController {
     public ResponseEntity<CoachDto> addCoachHistory (@PathVariable("coach-name") String coachName,
                                                      @RequestBody DetailCoachHistory history) {
         CoachDto coachDto = coachService.addCoachHistory(coachName, history);
+        return ResponseEntity.ok(coachDto);
+    }
+
+    @PostMapping("{coach-name}/add-record-against-club")
+    public ResponseEntity<CoachDto> addRecordAgainstClub (@PathVariable("coach-name") String coachName,
+                                                          @RequestBody DetailCoachRecordAgainstClub record) {
+        CoachDto coachDto = coachService.addCoachRecordAgainstClub(coachName, record);
+        return ResponseEntity.ok(coachDto);
+    }
+
+    @PostMapping("{coach-name}/add-record-against-manager")
+    public ResponseEntity<CoachDto> addRecordAgainstManager (@PathVariable("coach-name") String coachName,
+                                                             @RequestBody DetailCoachRecordAgainstManager record) {
+        CoachDto coachDto = coachService.addCoachRecordAgainstManager(coachName, record);
         return ResponseEntity.ok(coachDto);
     }
 }

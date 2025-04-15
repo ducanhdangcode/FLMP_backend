@@ -1,10 +1,7 @@
 package net.ducanh.flmp_backend.service;
 
 import net.ducanh.flmp_backend.dto.CoachDto;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachContract;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachHistory;
-import net.ducanh.flmp_backend.entity.CustomEntity.DetailCoachStat;
-import net.ducanh.flmp_backend.entity.CustomEntity.GroupedCoachStatByCompetition;
+import net.ducanh.flmp_backend.entity.CustomEntity.*;
 
 import java.util.List;
 
@@ -36,4 +33,8 @@ public interface ICoachService {
     List<DetailCoachStat> getCoachStatsByLeagueType (String coachName, String leagueType);
 
     CoachDto addCoachHistory (String coachName, DetailCoachHistory history);
+
+    CoachDto addCoachRecordAgainstClub (String coachName, DetailCoachRecordAgainstClub record);
+
+    CoachDto addCoachRecordAgainstManager (String coachName, DetailCoachRecordAgainstManager record);
 }
