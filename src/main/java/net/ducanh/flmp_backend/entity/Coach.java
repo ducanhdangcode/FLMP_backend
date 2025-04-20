@@ -87,4 +87,8 @@ public class Coach {
     @Column(name = "records-against-manager")
     @ElementCollection
     private List<DetailCoachRecordAgainstManager> recordsAgainstManager;
+
+    @Column(name = "debut-careers")
+    @ElementCollection
+    private List<DetailCoachDebutCareer> debutCareers;
 }

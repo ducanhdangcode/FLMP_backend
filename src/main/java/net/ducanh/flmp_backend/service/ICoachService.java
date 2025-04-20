@@ -37,4 +37,6 @@ public interface ICoachService {
     CoachDto addCoachRecordAgainstClub (String coachName, DetailCoachRecordAgainstClub record);
 
     CoachDto addCoachRecordAgainstManager (String coachName, DetailCoachRecordAgainstManager record);
+
+    CoachDto addCoachDebutCareer (String coachName, DetailCoachDebutCareer career);
 }

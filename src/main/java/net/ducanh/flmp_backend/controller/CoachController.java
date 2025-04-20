@@ -123,4 +123,11 @@ public class CoachController {
         CoachDto coachDto = coachService.addCoachRecordAgainstManager(coachName, record);
         return ResponseEntity.ok(coachDto);
     }
+
+    @PostMapping("{coach-name}/add-debut-career")
+    public ResponseEntity<CoachDto> addCoachDebutCareer (@PathVariable("coach-name") String coachName,
+                                                         @RequestBody DetailCoachDebutCareer career) {
+        CoachDto coachDto = coachService.addCoachDebutCareer(coachName, career);
+        return ResponseEntity.ok(coachDto);
+    }
 }

@@ -27,7 +27,8 @@ public class CoachMappers {
                 coach.getContracts(),
                 coach.getHistories(),
                 coach.getRecordsAgainstClub(),
-                coach.getRecordsAgainstManager()
+                coach.getRecordsAgainstManager(),
+                coach.getDebutCareers()
         );
     }
 
@@ -54,7 +55,8 @@ public class CoachMappers {
                 coachDto.getContracts(),
                 coachDto.getHistories(),
                 coachDto.getRecordsAgainstClub(),
-                coachDto.getRecordsAgainstManager()
+                coachDto.getRecordsAgainstManager(),
+                coachDto.getDebutCareers()
         );
     }
 }
