@@ -218,4 +218,16 @@ public class CoachServiceImpl implements ICoachService {
         Coach savedCoach = coachRepository.save(coach);
         return CoachMappers.mapToCoachDto(savedCoach);
     }
+
+    @Override
+    public CoachDto addCoachSpecialMatchCareer(String coachName, DetailCoachSpecialMatchCareer career) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<DetailCoachSpecialMatchCareer> specialMatchCareers = coach.getSpecialMatchCareers();
+        specialMatchCareers.add(career);
+        coach.setSpecialMatchCareers(new ArrayList<>(specialMatchCareers));
+        Coach savedCoach = coachRepository.save(coach);
+        return CoachMappers.mapToCoachDto(savedCoach);
+    }
 }

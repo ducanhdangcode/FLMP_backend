@@ -91,4 +91,8 @@ public class Coach {
     @Column(name = "debut-careers")
     @ElementCollection
     private List<DetailCoachDebutCareer> debutCareers;
+
+    @Column(name = "special_match_careers")
+    @ElementCollection
+    private List<DetailCoachSpecialMatchCareer> specialMatchCareers;
 }
