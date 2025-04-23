@@ -37,4 +37,5 @@ public class CoachDto {
     private List<DetailCoachRecordAgainstManager> recordsAgainstManager;
     private List<DetailCoachDebutCareer> debutCareers;
     private List<DetailCoachSpecialMatchCareer> specialMatchCareers;
+    private List<PersonalDetailNews> news;
 }

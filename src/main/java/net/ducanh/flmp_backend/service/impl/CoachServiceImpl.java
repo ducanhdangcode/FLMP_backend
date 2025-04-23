@@ -230,4 +230,16 @@ public class CoachServiceImpl implements ICoachService {
         Coach savedCoach = coachRepository.save(coach);
         return CoachMappers.mapToCoachDto(savedCoach);
     }
+
+    @Override
+    public CoachDto addCoachNews(String coachName, PersonalDetailNews news) {
+        Coach coach = coachRepository.findByName(coachName).orElseThrow(
+                () -> new ResourceNotFoundException("Coach is not existed with the given name: " + coachName)
+        );
+        List<PersonalDetailNews> coachNews = coach.getNews();
+        coachNews.add(news);
+        coach.setNews(new ArrayList<>(coachNews));
+        Coach savedCoach = coachRepository.save(coach);
+        return CoachMappers.mapToCoachDto(savedCoach);
+    }
 }

@@ -137,4 +137,11 @@ public class CoachController {
         CoachDto coachDto = coachService.addCoachSpecialMatchCareer(coachName, career);
         return ResponseEntity.ok(coachDto);
     }
+
+    @PostMapping("{coach-name}/add-news")
+    public ResponseEntity<CoachDto> addCoachNews (@PathVariable("coach-name") String coachName,
+                                                  @RequestBody PersonalDetailNews news) {
+        CoachDto coachDto = coachService.addCoachNews(coachName, news);
+        return ResponseEntity.ok(coachDto);
+    }
 }

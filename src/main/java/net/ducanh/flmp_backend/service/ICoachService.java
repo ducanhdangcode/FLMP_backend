@@ -41,4 +41,6 @@ public interface ICoachService {
     CoachDto addCoachDebutCareer (String coachName, DetailCoachDebutCareer career);
 
     CoachDto addCoachSpecialMatchCareer (String coachName, DetailCoachSpecialMatchCareer career);
+
+    CoachDto addCoachNews (String coachName, PersonalDetailNews news);
 }
